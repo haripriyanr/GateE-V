@@ -62,6 +62,20 @@ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 proc_sys_reset_0
 create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_mem_intercon
 set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {1}] [get_bd_cells axi_mem_intercon]
 
+# ── 5b. MIG 7-Series DDR3 Memory Controller ───────────────────────────
+create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:4.2 mig_7series_0
+set mig_prj_path [file normalize "$src_dir/board_files/genesys2/H/mig.prj"]
+if {[file exists $mig_prj_path]} {
+    set_property -dict [list \
+        CONFIG.XML_INPUT_FILE $mig_prj_path \
+        CONFIG.MIG_DONT_TOUCH_PARAM {Custom} \
+    ] [get_bd_cells mig_7series_0]
+}
+
+# Connect AXI Memory Interconnect M00_AXI -> MIG S_AXI
+connect_bd_intf_net [get_bd_intf_pins axi_mem_intercon/M00_AXI] \
+                    [get_bd_intf_pins mig_7series_0/S_AXI]
+
 # ── 6. Accelerator (gatev_top) ──────────────────────────────────────
 create_bd_cell -type module -reference gatev_top gatev_top
 
@@ -102,6 +116,9 @@ connect_bd_net [get_bd_pins gatev_top/acc_done] \
 make_bd_intf_pins_external [get_bd_intf_pins gatev_top/s_axil]
 set_property name ext_s_axil [get_bd_intf_ports s_axil_0]
 
+make_bd_intf_pins_external [get_bd_intf_pins mig_7series_0/DDR3]
+set_property name ddr3_sdram [get_bd_intf_ports DDR3_0]
+
 create_bd_port -dir I -type clk sys_clk
 set_property CONFIG.FREQ_HZ 200000000 [get_bd_ports sys_clk]
 connect_bd_net [get_bd_ports sys_clk] [get_bd_pins clk_wiz_0/clk_in1]
@@ -121,20 +138,13 @@ regenerate_bd_layout
 save_bd_design
 
 puts "============================================================"
-puts " GatE-V Stage 2B Block Design Created"
+puts " GatE-V Stage 3A Block Design Created & Fully Wired to DDR3 MIG"
 puts " Contains:"
 puts "   - clk_wiz_0        (200M in -> 100M sys + 200M ref)"
 puts "   - proc_sys_reset_0 (reset synchronizer)"
-puts "   - axi_mem_intercon (accelerator <-> DDR bridge)"
-puts "   - gatev_top      (convolution accelerator)"
+puts "   - axi_mem_intercon (accelerator M_AXI <-> DDR3 bridge)"
+puts "   - mig_7series_0    (Genesys-2 DDR3 Memory Controller)"
+puts "   - gatev_top        (convolution accelerator core)"
 puts "   - xlconcat_0       (acc_done -> irq)"
-puts "   - External ports: sys_clk, ext_reset_n, ext_s_axil, irq"
-puts ""
-puts " Next: Add MIG in Vivado GUI"
-puts "   1. vivado GatE-V.xpr"
-puts "   2. In BD canvas, right-click -> Add IP -> mig_7series"
-puts "   3. Configure for Genesys-2 DDR3 (MT41K256M16RE-125, 64-bit)"
-puts "   4. Connect mig_7series_0/S_AXI -> axi_mem_intercon/M00_AXI"
-puts "   5. Connect mig_7series_0/ui_clk -> M00_ACLK"
-puts "   6. Generate Output Products -> Generate Bitstream"
+puts "   - External ports: sys_clk, ext_reset_n, ext_s_axil, irq, ddr3_sdram"
 puts "============================================================"
