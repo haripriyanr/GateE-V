@@ -22,6 +22,7 @@ runs/
 
 # Large Archives & Videos
 *.zip
+!GatE-V/DVcon_submissions/*.zip
 *.mp4
 *.7z
 *.tar.gz

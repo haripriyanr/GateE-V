@@ -37,10 +37,10 @@ FPGA (Genesys-2 board) with a custom hardware accelerator.
 ```
 GatE-V/
 ├── AGENTS.md                          ← This file
-├── DVcon_submissions/                 ← Submission report PDFs (Stage 1, 2A, 2B)
+├── DVcon_submissions/                 ← Submission archives & reports (Stage 1, 2A, 2B)
 │   ├── DVCon_India_2026_DC_Stage1_Sub_166.pdf
-│   ├── DVCon India 2026 Design Contest Stage 2A report.pdf
-│   └── DVCon_Stage2B_Report.pdf
+│   ├── DVCon_India_2026_DC_Stage2_166.zip
+│   └── DVCon_India_2026_DC_Stage2B_166.zip
 ├── Software-Architecture/
 │   ├── Version3/                      ← ACTIVE — latest code (July 2026)
 │   │   ├── configs/gatev_base.yaml    ← Hyperparameters
