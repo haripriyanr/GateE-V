@@ -55,7 +55,9 @@ GatE-V/
 │   │   ├── Makefile / build.bat       ← Vivado & ModelSim build system
 │   │   ├── board_files/               ← Genesys-2 board files
 │   │   └── constraints/               ← XDC clock constraints
-│   └── Version2/                      ← Stage 2B submission RTL & build system
+│   ├── Version2/                      ← Stage 2B submission RTL & build system
+│   └── Evaluation_DVcon/              ← Official DVCon 2026 VEGA AS1061 SoC IP & bare-metal env
+
 
 ```
 

@@ -11,6 +11,7 @@ data/
 data/coco/
 data/images_*
 data/coco-tasks-dataset/
+**/Evaluation_DVcon/
 
 # Model Checkpoints & Pretrained Weights
 pretrained/
