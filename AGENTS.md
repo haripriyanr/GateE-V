@@ -37,42 +37,26 @@ FPGA (Genesys-2 board) with a custom hardware accelerator.
 ```
 GatE-V/
 ├── AGENTS.md                          ← This file
+├── DVcon_submissions/                 ← Submission report PDFs (Stage 1, 2A, 2B)
+│   ├── DVCon_India_2026_DC_Stage1_Sub_166.pdf
+│   ├── DVCon India 2026 Design Contest Stage 2A report.pdf
+│   └── DVCon_Stage2B_Report.pdf
 ├── Software-Architecture/
 │   ├── Version3/                      ← ACTIVE — latest code (July 2026)
-│   │   ├── configs/gatev_base.yaml    ← All hyperparameters
-│   │   ├── src/                       ← Python source
-│   │   │   ├── model/                 ← Core model (detector, gate, encoder, decoder, losses)
-│   │   │   ├── engine/                ← Trainer, evaluator
-│   │   │   ├── data/                  ← Dataset, collate, transforms
-│   │   │   └── utils/                 ← Config, checkpoint, logger, metrics
-│   │   ├── scripts/                   ← Entry points (train, eval, export, bootstrap)
+│   │   ├── configs/gatev_base.yaml    ← Hyperparameters
+│   │   ├── src/                       ← Core Python source
+│   │   ├── scripts/                   ← Entry points
 │   │   ├── tests/                     ← Unit tests
-│   │   ├── docs/                      ← Architecture docs, V3 plan archive
-│   │   ├── run.sh                     ← Linux: setup + data download + training
-│   │   ├── run.bat                    ← Windows equivalent
-│   │   ├── train_new.log              ← Training log from VM
-│   │   └── checkpoints/               ← best.pth, latest.pth (need download from GCP)
-│   ├── Version2/                      ← OLD — Stage 2A submission (May 2026), kept for reference
-│   └── [pretrained/]                  ← RT-DETRv2 pretrained weights (auto-downloaded by run.sh)
+│   │   └── docs/                      ← Architecture docs
+│   └── Version2/                      ← Stage 2A reference code
 ├── Hardware-Architecture/
-│   ├── rtl/                           ← SystemVerilog RTL
-│   │   ├── gatev_pkg.sv              ← Package: params, address map, SiLU LUT
-│   │   ├── gatev_top.sv              ← Top-level accelerator
-│   │   ├── gatev_mac_engine.sv       ← Systolic array + MAC cells + requantizer
-│   │   ├── gatev_backbone.sv         ← Conv backbone tile scheduler
-│   │   ├── gatev_axi_lite_slave.sv   ← CPU config interface
-│   │   ├── gatev_axi4_master.sv      ← DDR DMA engine
-│   │   ├── gatev_async_fifo.sv       ← Clock domain crossing
-│   │   ├── gatev_ddr3_model.sv       ← DDR3 simulation model
-│   │   └── tb_gatev.sv              ← Testbench
-│   ├── Make/                          ← Vivado/ModelSim build system
-│   ├── board_files/                   ← Genesys-2 FPGA board files
-│   ├── report/                        ← Stage 2B report PDF
-│   ├── AXI_Interface_Details.txt      ← AXI register map docs
-│   └── README.md                      ← Build instructions
-├── DVCon_India_2026_DC_Stage2_166.zip   ← Stage 2A submission archive
-├── DVCon_India_2026_DC_Stage2B_166.zip  ← Stage 2B submission archive
-└── [Reference PDFs]                    ← Problem statement, VEGA docs, research paper
+│   ├── Version3/                      ← ACTIVE — FPGA V3 design (800x800, P2-P5 FGPA, 512 MAC)
+│   │   ├── rtl/                       ← SystemVerilog RTL
+│   │   ├── Makefile / build.bat       ← Vivado & ModelSim build system
+│   │   ├── board_files/               ← Genesys-2 board files
+│   │   └── constraints/               ← XDC clock constraints
+│   └── Version2/                      ← Stage 2B submission RTL & build system
+
 ```
 
 ---
