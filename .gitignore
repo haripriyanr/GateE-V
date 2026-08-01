@@ -1,0 +1,48 @@
+# Python & Virtual Environments
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Datasets & Downloads
+data/
+data/coco/
+data/images_*
+data/coco-tasks-dataset/
+
+# Model Checkpoints & Pretrained Weights
+pretrained/
+*.pth
+*.pt
+*.bin
+*.onnx
+runs/
+
+# Large Archives & Videos
+*.zip
+*.mp4
+*.7z
+*.tar.gz
+
+# Logs & Temporary Files
+*.log
+train_new.log
+.DS_Store
+
+# Vivado / FPGA Build Artifacts
+**/GatE-V.sim/
+**/GatE-V.runs/
+**/GatE-V.hw/
+**/GatE-V.ip_user_files/
+**/GatE-V.cache/
+.Xil/
+vivado*.log
+vivado*.jou
+*.pb
+*.jou
+vsim.wlf
+questa.wlf
+work/
+transcript

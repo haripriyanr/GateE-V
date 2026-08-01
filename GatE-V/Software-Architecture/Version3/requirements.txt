@@ -1,0 +1,18 @@
+# torch/torchvision/torchaudio are automatically installed by main.py
+# so the best backend (CUDA/ROCm/MPS/CPU) is selected.
+
+timm
+psutil
+requests
+pycocotools
+tqdm
+Pillow
+scipy
+numpy
+pyyaml
+tensorboard
+git+https://github.com/openai/CLIP.git
+onnx
+onnxscript
+onnxruntime
+
