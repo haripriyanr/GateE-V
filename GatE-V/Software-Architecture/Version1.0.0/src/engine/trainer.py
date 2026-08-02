@@ -343,7 +343,12 @@ def train_stage(
                 
         raw_model.eval()
         with torch.no_grad(), torch.autocast(device_type=device.type, dtype=amp_dtype, enabled=use_amp):
-            raw_model(images[0:1], task_ids[0:1])
+            # Disable torch.compile tracing during hook inspection to prevent Graph Break warnings
+            if hasattr(torch, "compiler") and hasattr(torch.compiler, "disable"):
+                with torch.compiler.disable():
+                    raw_model(images[0:1], task_ids[0:1])
+            else:
+                raw_model(images[0:1], task_ids[0:1])
         raw_model.train()
         
         for h in hooks: h.remove()
