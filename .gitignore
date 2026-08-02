@@ -48,3 +48,11 @@ vsim.wlf
 questa.wlf
 work/
 transcript
+
+# Ignore Simulation Waveform Traces & Huge Docker Tarballs
+*.vcd
+*.wlf
+*.tar
+**/DVCon_2026/Application/.docker_scripts/
+**/DVCon_2026/VIVADO_PROJECT/
+**/DVCon_2026/GEN_BIT_OUT/

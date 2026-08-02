@@ -1,0 +1,127 @@
+# ============================================================================
+#  GatE-V Training Configuration — DVCon India 2026 Design Contest Stage 2
+#  A/B variant: v2-like hyperparams + pure v2 architecture (no aux/FGPA/AFF/KD)
+# ============================================================================
+
+model:
+  backbone: r50vd
+  num_classes: 1
+  num_tasks: 14
+  hidden_dim: 256
+  num_queries: 200
+  num_encoder_layers: 1
+  num_decoder_layers: 6
+  eval_idx: -1
+  task_embed_dim: 128
+  fgtq_layers: [P2, P3, P4, P5]
+  clip_model: ViT-B/32
+  clip_proj_method: gaussian
+  use_fpga_discrete_sampling: true
+  cross_attn_method: discrete
+  use_learnable_residuals: true
+  inject_task_every_layer: true
+  use_fgpa: true
+  use_aff: true
+  use_aux_head: true
+  use_kd: true
+  kd_decay: 0.999
+  kd_weight: 0.1
+
+training:
+  stage1:
+    epochs: 10
+    frozen_modules: [backbone]
+    loss_weights:
+      cls: 2.0
+      l1: 5.0
+      giou: 2.0
+    task_loss_weight: 0.0
+    lambda_noobj: 2.0
+    lambda_exists: 2.0
+    lambda_noobj_ramp_epoch: 5
+    lambda_noobj_max: 12.0
+    lambda_comp: 0.0
+    cost_cls: 2.0
+    cost_l1: 5.0
+    cost_giou: 2.0
+    mal_alpha: 2.0
+    lambda_aux_head: 0.2
+
+  stage2:
+    epochs: 140
+    loss_weights:
+      cls: 5.0
+      l1: 5.0
+      giou: 2.0
+      task: 1.5
+    task_loss_warmup_epochs: 6
+    task_loss_warmup_start: 0.1
+    lambda_noobj: 10.0
+    lambda_exists: 2.0
+    lambda_noobj_ramp_epoch: 10
+    lambda_noobj_max: 12.0
+    lambda_comp: 0.05
+    comp_margin: 0.3
+    lambda_aux_head: 0.2
+    cost_cls: 2.0
+    cost_l1: 5.0
+    cost_giou: 2.0
+    mal_alpha: 2.0
+
+  batch_size: 48
+  img_size: 800
+  grad_accum_steps: 2
+  amp: true
+  base_lr: 5.0e-5
+  backbone_lr: 3.0e-6
+  weight_decay: 1.0e-4
+  max_grad_norm: 0.1
+  bbox_loss: sized_l1
+  lr_scheduler: cosine
+  lr_warmup_epochs: 5
+  use_ema: true
+  ema_decay: 0.999
+  use_compile: true
+  use_checkpoint: false
+  use_aux_loss: true
+
+validation:
+  stage1_frequency: 1
+  stage2_frequency: 1
+  early_stopping_patience: 20
+  early_stopping_metric: map_0.5
+  max_samples_per_task: 200
+
+data:
+  coco_root: ./data/coco
+  dataset_dir: ./data/coco-tasks-dataset
+  images_dir: ./data/images_800
+  num_workers: 8
+  pin_memory: true
+  cache_images: false
+  task_aware_sampling: true
+  augmentations:
+    hsv:
+      h: 0.015
+      s: 0.7
+      v: 0.4
+    degrees: 0.0
+    translate: 0.1
+    scale: 0.5
+    shear: 0.0
+    perspective: 0.0
+    flipud: 0.0
+    fliplr: 0.5
+    mosaic: 0.0
+    mixup: 0.0
+
+experiment:
+  name: gatev_base
+  output_dir: ./runs
+  seed: 42
+  log_interval: 50
+  checkpoint_save_top_k: 3
+
+precomputed:
+  clip_embeddings: null
+  pretrained_checkpoint: ./pretrained/rtdetrv2_r50vd_m_7x_coco_ema.pth

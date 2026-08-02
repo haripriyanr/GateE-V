@@ -1,0 +1,7 @@
+/* Generated automatically. */
+static const char configuration_arguments[] = "/home/premjith/Desktop/RISCV/riscv-gnu-toolchain/gcc/configure --target=riscv64-unknown-elf --prefix=/home/premjith/Desktop/RISCV/riscv-multi --disable-shared --disable-threads --enable-languages=c,c++ --with-pkgversion=g2ee5e430018 --with-system-zlib --enable-tls --with-newlib --with-sysroot=/home/premjith/Desktop/RISCV/riscv-multi/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=/home/premjith/Desktop/RISCV/riscv-gnu-toolchain/gcc --enable-multilib --with-multilib-generator='rv32i-ilp32--;rv32im-ilp32--;rv32ima-ilp32--;rv32imac-ilp32--;rv32ic-ilp32--;rv32imc-ilp32--;rv32imafd-ilp32d--;rv32imafdc-ilp32d--;rv32imaf-ilp32f--;rv32imafc-ilp32f--;rv64i-lp64--;rv64im-lp64--;rv64ima-lp64--;rv64imac-lp64--;rv64ic-lp64--;rv64imc-lp64--;rv64imafd-lp64d--;rv64imafdc-lp64d--;rv64imaf-lp64f--;rv64imafc-lp64f--;' --with-abi=lp64d --with-arch=rv64imafdc --with-tune=rocket --with-isa-spec=2.2 'CFLAGS_FOR_TARGET=-Os   -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os   -mcmodel=medany'";
+static const char thread_model[] = "single";
+
+static const struct {
+  const char *name, *value;
+} configure_default_options[] = { { "abi", "lp64d" }, { "arch", "rv64imafdc" }, { "tune", "rocket" }, { "isa_spec", "2.2" } };
