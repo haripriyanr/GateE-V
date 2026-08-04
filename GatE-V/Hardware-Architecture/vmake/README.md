@@ -1,4 +1,4 @@
-# GatE-V FPGA Simulator Guide (Version 3 Architecture)
+# GatE-V FPGA Simulator Guide (vmake — FPGA V3 Build System)
 
 **Hardware Specs**: 32x16 Systolic Array (512 INT8 MACs) @ 100 MHz, $800 \times 800$ image support (`MAX_IMG_WIDTH=800`), P2–P5 FGPA line buffering, discrete grid sampling, 256-entry SiLU LUT, AXI4 Full DMA.
 
@@ -7,12 +7,12 @@
 - Make
 
 ## Project Structure
-The `Make` directory is completely self-contained. When you run `make`, it automatically creates a Vivado project directory named `GatE-V` inside its parent folder (e.g. `../GatE-V`), copies the `rtl` and `tb` files into it, and uses those files to run simulations and generate block designs. 
+The `vmake` directory is completely self-contained. When you run `make`, it automatically creates a Vivado project directory named `GatE-V` inside its parent folder (e.g. `../GatE-V`), copies the `rtl` and `tb` files into it, and uses those files to run simulations and generate block designs. 
 
 ## Running the Simulation (Linux/macOS or WSL)
 
 1. **Terminal Setup:**
-   Ensure `vivado` is available in your PATH. Change directory to the `Make` folder.
+   Ensure `vivado` is available in your PATH. Change directory to the `vmake` folder.
 
 2. **Simulation:**
    Run the following command to execute the block design creation and behavioral simulation in batch mode:
@@ -51,7 +51,7 @@ The `Make` directory is completely self-contained. When you run `make`, it autom
 
 ## Running the Simulation (ModelSim/Questa)
 1. **Terminal Setup:**
-   Ensure `vsim` is available in your PATH. Change directory to the `Make` folder.
+   Ensure `vsim` is available in your PATH. Change directory to the `vmake` folder.
    
 2. **Batch Simulation:**
    ```bash
@@ -72,7 +72,7 @@ The `Make` directory is completely self-contained. When you run `make`, it autom
    ```
 
 ## Running the Simulation (Windows)
-Because the `Makefile` relies on native Linux commands, a `build.bat` script is provided for native Windows users. Ensure Vivado and/or ModelSim is added to your PATH (e.g. from the Vivado Tcl Shell or Command Prompt). Change directory to the `Make` folder.
+Because the `Makefile` relies on native Linux commands, a `build.bat` script is provided for native Windows users. Ensure Vivado and/or ModelSim is added to your PATH (e.g. from the Vivado Tcl Shell or Command Prompt). Change directory to the `vmake` folder.
 
 1. **Vivado Simulation:**
    ```cmd

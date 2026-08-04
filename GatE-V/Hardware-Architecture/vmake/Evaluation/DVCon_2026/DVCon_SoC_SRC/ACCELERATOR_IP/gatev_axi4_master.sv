@@ -73,7 +73,6 @@ module gatev_axi4_master (
     // ── Write FSM (streaming data beats) ────────────────────────────────
     logic wr_state, wr_next;
     logic [7:0]  wr_beat_cnt;   // beats remaining
-    logic [7:0]  wr_beat_max;
     logic        wr_addr_done, wr_aw_accepted;
 
     always_ff @(posedge clk or negedge rst_n) begin
@@ -92,7 +91,6 @@ module gatev_axi4_master (
             m_axi_bready    <= 1'b0;
             wr_ack          <= 1'b0;
             wr_beat_cnt     <= 8'd0;
-            wr_beat_max     <= 8'd0;
             wr_addr_done    <= 1'b0;
             wr_aw_accepted  <= 1'b0;
             wr_data_ready   <= 1'b0;
@@ -113,7 +111,6 @@ module gatev_axi4_master (
                         m_axi_awsize  <= cfg_burst_size;
                         m_axi_awburst <= cfg_burst_type;
                         m_axi_awvalid <= 1'b1;
-                        wr_beat_max   <= wr_len;
                         wr_beat_cnt   <= wr_len + 1;
                     end else begin
                         m_axi_awvalid <= 1'b0;
@@ -152,7 +149,6 @@ module gatev_axi4_master (
     // ── Read FSM ──────────────────────────────────────────────────────────
     logic rd_state, rd_next;
     logic [63:0] rd_data_q;
-    logic [7:0]  rd_beat_cnt;
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -166,7 +162,6 @@ module gatev_axi4_master (
             m_axi_rready  <= 1'b0;
             rd_data_q     <= 64'd0;
             rd_valid      <= 1'b0;
-            rd_beat_cnt   <= 8'd0;
         end else begin
             rd_state <= rd_next;
             rd_valid <= 1'b0;
@@ -188,7 +183,6 @@ module gatev_axi4_master (
                     if (m_axi_rvalid) begin
                         rd_data_q <= m_axi_rdata;
                         rd_valid  <= 1'b1;
-                        rd_beat_cnt <= rd_beat_cnt + 1;
                     end
                 end
             endcase

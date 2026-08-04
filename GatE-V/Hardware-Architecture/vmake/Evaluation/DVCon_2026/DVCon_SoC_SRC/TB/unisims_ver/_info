@@ -8,7 +8,7 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/run/media/user/DATA/DVcon/GatE-V/Hardware-Architecture/Version3/Evaluation/DVCon_2026/RUN
+Z0 d/run/media/user/DATA/DVcon/GatE-V/Hardware-Architecture/vmake/Evaluation/DVCon_2026/RUN
 vAND2B1L
 Z1 !s110 1785639143
 !i10b 1

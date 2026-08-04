@@ -1,5 +1,5 @@
 puts "--- Simulation Started (Batch Mode) ---"
-set MDIR_PATH "/run/media/user/DATA/DVcon/GatE-V/Hardware-Architecture/Version3/Evaluation/DVCon_2026"
+set MDIR_PATH "/run/media/user/DATA/DVcon/GatE-V/Hardware-Architecture/vmake/Evaluation/DVCon_2026"
 set PJT_PATH "$MDIR_PATH/VIVADO_PROJECT"
 set SIM_RUN_TIME "100"
 
