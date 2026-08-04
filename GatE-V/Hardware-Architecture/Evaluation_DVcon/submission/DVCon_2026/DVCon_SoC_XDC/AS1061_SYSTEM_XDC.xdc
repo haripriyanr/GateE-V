@@ -314,9 +314,8 @@ create_generated_clock -name clk50M -source [get_pins u_clk_wiz_0/clk_out6] -div
 #U4 OUT
 #create_generated_clock -name clk_sd_out -source [get_pins u_soc_top/u_SDC_AXI_TOP/u_sd_top/u_clock_manager/u5_SDCLKMUX/I0] -divide_by 1 [get_ports clk_sd_out]
 
-# Unused SD-card clock groups (commented out to prevent Vivado 12-4739 Critical Warnings)
-# set_clock_groups -physically_exclusive -group {clk390I clk390K clk390KU3 clk390KU4 clk_sd_out_390K} -group {clk25M clk_sd_out_25M clk25MU3 clk25MU4} -group {clk50M clk50MU4 clk_sd_out_50M}
-# set_clock_groups -asynchronous -group {clk50M clk_sd_out_50M} -group clk_out1_clk_wiz_0
+set_clock_groups -physically_exclusive -group {clk390I clk390K clk390KU3 clk390KU4 clk_sd_out_390K} -group {clk25M clk_sd_out_25M clk25MU3 clk25MU4} -group {clk50M clk50MU4 clk_sd_out_50M}
+set_clock_groups -asynchronous -group {clk50M clk_sd_out_50M} -group clk_out1_clk_wiz_0
 
 
 #############################################Timing constraints
