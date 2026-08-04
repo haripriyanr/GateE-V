@@ -28,7 +28,7 @@ FPGA (Genesys-2 board) with a custom hardware accelerator.
 | Stage 1 | Problem statement + approach report | Submitted |
 | Stage 2A | Software-only detection on COCO-Tasks | Submitted (v2) |
 | Stage 2B | Custom FPGA accelerator (systolic array) | Submitted |
-| Stage 3A | Integrated HW+SW (VEGA CPU + FPGA) | Submitted (`DVCon_India_2026_DC_Stage3A_166.zip`) |
+| Stage 3A | Integrated HW+SW (VEGA CPU + FPGA) | In Progress |
 | Stage 3B | Final Evaluation & Hardware Demo | Pending |
 
 ---
