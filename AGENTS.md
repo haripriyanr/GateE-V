@@ -15,7 +15,7 @@ The solution must run on the **VEGA AS1061 RISC-V processor** on a Xilinx Kintex
 FPGA (Genesys-2 board) with a custom hardware accelerator.
 
 ### The Solution: GatE-V
-- **Software** (`Software-Architecture/Version3/`): RT-DETRv2 + ResNet-50vd backbone
+- **Software** (`Software-Architecture/Version1.0.0/`): RT-DETRv2 + ResNet-50vd backbone
   with CLIP-based task conditioning, feature gating (FGTQ), FGPA (P2 injection),
   AFF (adaptive feature fusion), and INT8 quantization for FPGA deployment.
 - **Hardware** (`Hardware-Architecture/`): Custom 32x16 weight-stationary systolic
@@ -28,7 +28,8 @@ FPGA (Genesys-2 board) with a custom hardware accelerator.
 | Stage 1 | Problem statement + approach report | Submitted |
 | Stage 2A | Software-only detection on COCO-Tasks | Submitted (v2) |
 | Stage 2B | Custom FPGA accelerator (systolic array) | Submitted |
-| Stage 3A | Integrated HW+SW (VEGA CPU + FPGA) | Pending (user will share later) |
+| Stage 3A | Integrated HW+SW (VEGA CPU + FPGA) | Submitted (`DVCon_India_2026_DC_Stage3A_166.zip`) |
+| Stage 3B | Final Evaluation & Hardware Demo | Pending |
 
 ---
 
@@ -37,17 +38,18 @@ FPGA (Genesys-2 board) with a custom hardware accelerator.
 ```
 GatE-V/
 ├── AGENTS.md                          ← This file
-├── DVcon_submissions/                 ← Submission archives & reports (Stage 1, 2A, 2B)
+├── DVcon_submissions/                 ← Submission archives & reports (Stage 1, 2A, 2B, 3A)
 │   ├── DVCon_India_2026_DC_Stage1_Sub_166.pdf
 │   ├── DVCon_India_2026_DC_Stage2_166.zip
-│   └── DVCon_India_2026_DC_Stage2B_166.zip
+│   ├── DVCon_India_2026_DC_Stage2B_166.zip
+│   └── DVCon_India_2026_DC_Stage3A_166.zip
 ├── Software-Architecture/
-│   ├── Version3/                      ← ACTIVE — latest code (July 2026)
-│   │   ├── configs/gatev_base.yaml    ← Hyperparameters
+│   ├── Version1.0.0/                  ← ACTIVE — latest 300-epoch production code (August 2026)
+│   │   ├── configs/gatev_v1.0.0.yaml  ← Hyperparameters (300 ep, T_0=35, T_mult=2)
 │   │   ├── src/                       ← Core Python source
-│   │   ├── scripts/                   ← Entry points
-│   │   ├── tests/                     ← Unit tests
-│   │   └── docs/                      ← Architecture docs
+│   │   ├── scripts/                   ← Entry points & dataset crawler
+│   │   └── tests/                     ← Unit tests
+│   ├── Version3/                      ← Stage 3A reference code
 │   └── Version2/                      ← Stage 2A reference code
 ├── Hardware-Architecture/
 │   ├── Version3/                      ← ACTIVE — FPGA V3 design (800x800, P2-P5 FGPA, 512 MAC)
@@ -57,13 +59,14 @@ GatE-V/
 │   │   └── constraints/               ← XDC clock constraints
 │   ├── Version2/                      ← Stage 2B submission RTL & build system
 │   └── Evaluation_DVcon/              ← Official DVCon 2026 VEGA AS1061 SoC IP & bare-metal env
+│       └── submission/DVCon_2026/     ← Final Stage 3A integrated C-DAC delivery package
 
 
 ```
 
 ---
 
-## 3. Software Architecture (Version 3)
+## 3. Software Architecture (Version 1.0.0)
 
 ### Model: GatEVTaskAwareRTDETR
 - **Backbone**: ResNet-50vd (pretrained RT-DETRv2)
@@ -73,15 +76,21 @@ GatE-V/
 - **Head**: Classification (14 tasks) + Bounding Box (4 coords) + Exists (binary)
 - **Query budget**: 200 object queries
 
-### Training Pipeline (Two-Stage)
-| | Stage 1 | Stage 2 |
+### Training Pipeline (Two-Stage — 300 Epoch Schedule)
+| | Stage 1 (Epochs 1-10) | Stage 2 (Epochs 1-290 / Overall 11-300) |
 |---|---------|---------|
-| Epochs | 10 | 140 |
-| Backbone | Frozen | Unfrozen at epoch 28 |
-| Losses | Focal + L1 + GIoU + MAL | + Comparative Ranking + Task Loss |
+| Epochs | 10 | 290 |
+| Backbone | Frozen | Unfrozen at Stage 2 Epoch 28 (Overall Ep 38) |
+| Losses | Focal + L1 + GIoU + MAL | + Comparative Ranking ($\lambda_{comp}=0.08$) + Task Loss |
 | Lambda_noobj | 2.0 → 12.0 (ramp 5 ep) | 10.0 → 12.0 (ramp 10 ep) |
-| Task loss | Disabled | Warmup 6 epochs |
-| LR | Cosine T_max=7 (crashes hard) | Cosine T_max=135 (slow decay) |
+| Task loss | Disabled | Warmup 6 epochs ($\lambda: 0.10 \to 1.00$) |
+| LR Scheduler | Cosine | Cosine Warm Restarts ($T_0=35, T_{mult}=2$) |
+| Backbone LR | N/A (Frozen) | $1.0 \times 10^{-5}$ upon unfreezing at Stage 2 Ep 28 |
+
+### Current Training Metrics (August 2026)
+- **Stage 1 Peak mAP@0.5**: **0.5174** (at Stage 1 Ep 10)
+- **Latest Checkpoint**: Stage 2 Ep 30 / Overall Ep 40 (`runs/gatev_v1.0.0/checkpoints/latest.pth`)
+- **Current mAP@0.5**: **0.4766** (in early backbone fine-tuning phase, scaling towards 0.53–0.55+)
 
 ### Key Innovations (v3 vs v2)
 1. **FGPA** (Fine-Grained Path Augmentation): P2 (stride-4, 256ch) injected into encoder → +1.5% APs

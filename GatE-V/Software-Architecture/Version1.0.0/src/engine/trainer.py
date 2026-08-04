@@ -328,28 +328,25 @@ def train_stage(
         print(f"  [{epoch:>2}/{epochs}]  avg_loss={avg_loss:.4f}  {comp_str}  lr={lr_now:.2e}  time={elapsed:.0f}s")
 
         # --- Dead Layer Checker ---
-        dead_layer_stats = []
+        raw_model = getattr(model, "module", model)
+        eval_model = getattr(raw_model, "_orig_mod", raw_model)
+        
         hooks = []
+        dead_layer_stats = []
         def get_hook(name):
             def hook(m, inp, out):
                 dead_pct = (out == 0).sum().item() / max(out.numel(), 1) * 100
                 dead_layer_stats.append((name, dead_pct))
             return hook
-        
-        raw_model = getattr(model, "module", model)
-        for name, layer in raw_model.backbone.named_modules():
+            
+        for name, layer in eval_model.backbone.named_modules():
             if isinstance(layer, torch.nn.Conv2d):
                 hooks.append(layer.register_forward_hook(get_hook(name)))
                 
-        raw_model.eval()
+        eval_model.eval()
         with torch.no_grad(), torch.autocast(device_type=device.type, dtype=amp_dtype, enabled=use_amp):
-            # Disable torch.compile tracing during hook inspection to prevent Graph Break warnings
-            if hasattr(torch, "compiler") and hasattr(torch.compiler, "disable"):
-                with torch.compiler.disable():
-                    raw_model(images[0:1], task_ids[0:1])
-            else:
-                raw_model(images[0:1], task_ids[0:1])
-        raw_model.train()
+            eval_model(images[0:1], task_ids[0:1])
+        eval_model.train()
         
         for h in hooks: h.remove()
         
