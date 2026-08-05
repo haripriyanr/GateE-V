@@ -4,8 +4,9 @@
 # DVCon India 2026 Design Contest — Team 166 (Byte Silicon)
 # ═════════════════════════════════════════════════════════════════════════════
 
-# ── 1. Primary Accelerator Clock Constraint (100 MHz) ────────────────────────
-create_clock -period 10.000 -name aclk -waveform {0.000 5.000} [get_ports aclk]
+# ── 1. Primary Accelerator Clock Constraint (50 MHz — Official C-DAC SoC Frequency) ──
+# 50 MHz = 20.000 ns period (50% duty cycle: 0.000 to 10.000 ns)
+create_clock -period 20.000 -name aclk -waveform {0.000 10.000} [get_ports aclk]
 
 # ── 2. Asynchronous Reset False Path ──────────────────────────────────────────
 set_false_path -from [get_ports rst_n]
