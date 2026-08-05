@@ -80,6 +80,6 @@ questa-gui: prepare
 
 # ── Clean ────────────────────────────────────────────────────────
 clean:
-	@rm -rf .Xil *.jou *.log *.backup* *.str *.vcd *.fst *.pb *.dir *.wlf wlft* work transcript
+	@rm -rf .Xil *.jou *.log *.backup* *.str *.debug *.vcd *.fst *.pb *.dir *.wlf wlft* work transcript Evaluation
 	@rm -rf $(PRJ_DIR)
 	@echo "\033[1;32m✓ Clean complete\033[0m"
