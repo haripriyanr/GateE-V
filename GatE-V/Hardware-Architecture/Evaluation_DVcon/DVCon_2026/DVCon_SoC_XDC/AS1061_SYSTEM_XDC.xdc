@@ -10,6 +10,8 @@ set_property BITSTREAM.CONFIG.UNUSEDPIN PULLNONE [current_design]
 set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
 set_property BITSTREAM.CONFIG.CONFIGRATE 9 [current_design]
 set_property BITSTREAM.CONFIG.SPI_32BIT_ADDR YES [current_design]
+set_property CFGBVS VCCO [current_design]
+set_property CONFIG_VOLTAGE 3.3 [current_design]
 
 ## 200MHz clock from board
 set_property -dict {PACKAGE_PIN AD11 IOSTANDARD LVDS} [get_ports clk_in1_n]
