@@ -50,14 +50,12 @@ GatE-V/
 │   │   ├── scripts/                   ← Entry points & dataset crawler
 │   │   └── tests/                     ← Unit tests
 │   ├── Version3/                      ← Stage 3A reference code
-│   └── Version2/                      ← Stage 2A reference code
 ├── Hardware-Architecture/
-│   ├── Version3/                      ← ACTIVE — FPGA V3 design (800x800, P2-P5 FGPA, 512 MAC)
+│   ├── vmake/                         ← ACTIVE — FPGA V3 build system (Vivado Make), 800x800, P2-P5 FGPA, 512 MAC
 │   │   ├── rtl/                       ← SystemVerilog RTL
 │   │   ├── Makefile / build.bat       ← Vivado & ModelSim build system
 │   │   ├── board_files/               ← Genesys-2 board files
 │   │   └── constraints/               ← XDC clock constraints
-│   ├── Version2/                      ← Stage 2B submission RTL & build system
 │   └── Evaluation_DVcon/              ← Official DVCon 2026 VEGA AS1061 SoC IP & bare-metal env
 │       └── submission/DVCon_2026/     ← Final Stage 3A integrated C-DAC delivery package
 
@@ -158,7 +156,7 @@ python scripts/export.py --checkpoint runs/gatev_base/checkpoints/best.pth \
 
 ### Running Simulation
 ```bash
-cd Hardware-Architecture/Make
+cd Hardware-Architecture/vmake
 make sim                    # Vivado behavioral sim (default 4 tiles)
 make sim NUM_TILES=8        # Custom tile count
 make sim-gui                # Vivado GUI with waveforms
@@ -247,8 +245,7 @@ gcloud compute instances delete recovery-vm --zone=us-central1-a --quiet
 | V3 run scripts | `Software-Architecture/Version3/run.sh`, `run.bat` |
 | V3 train log | `Software-Architecture/Version3/train_new.log` |
 | V3 docs | `Software-Architecture/Version3/docs/` |
-| HW V2 RTL & Build | `Hardware-Architecture/Version2/` |
-| HW V3 RTL & Build | `Hardware-Architecture/Version3/` |
+| HW V3 RTL & Build | `Hardware-Architecture/vmake/` |
 
 ### Reference (Kept As-Is)
 | File | Purpose |
@@ -260,7 +257,6 @@ gcloud compute instances delete recovery-vm --zone=us-central1-a --quiet
 | `DVCon_India_2026_DC_Stage1_Sub_166.pdf` | Stage 1 submission |
 | `DVCon_India_2026_DC_Stage2_166.zip` | Stage 2A submission archive |
 | `DVCon_India_2026_DC_Stage2B_166.zip` | Stage 2B submission archive |
-| `Software-Architecture/Version2/` | Old v2 source (kept for diffing) |
 
 ---
 

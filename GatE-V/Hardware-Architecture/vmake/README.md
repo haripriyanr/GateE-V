@@ -1,100 +1,91 @@
-# GatE-V FPGA Simulator Guide (vmake — FPGA V3 Build System)
+# GatE-V FPGA Build & Simulation (vmake)
 
-**Hardware Specs**: 32x16 Systolic Array (512 INT8 MACs) @ 100 MHz, $800 \times 800$ image support (`MAX_IMG_WIDTH=800`), P2–P5 FGPA line buffering, discrete grid sampling, 256-entry SiLU LUT, AXI4 Full DMA.
+Self-contained Vivado/Questa build system for the **GatE-V** hardware accelerator (FPGA V3).
+
+**Hardware Specs**: 32x16 Systolic Array (512 INT8 MACs) @ 100 MHz, 800x800 image support (`MAX_IMG_WIDTH=800`), P2–P5 FGPA line buffering, discrete grid sampling, 256-entry SiLU LUT, AXI4 Full DMA.
+
+**Target device**: Xilinx Kintex-7 XC7K325T-FFG900 (Digilent Genesys-2).
 
 ## Prerequisites
-- Vivado 2023.2 or compatible version
-- Make
+- **Vivado 2026.1** (tested; compatible versions should work)
+- **Make** (Linux/macOS/WSL) — or native Windows via `build.bat`
+- **ModelSim/Questa** *(optional)* — for `make questa`
 
-## Project Structure
-The `vmake` directory is completely self-contained. When you run `make`, it automatically creates a Vivado project directory named `GatE-V` inside its parent folder (e.g. `../GatE-V`), copies the `rtl` and `tb` files into it, and uses those files to run simulations and generate block designs. 
+## Directory Layout
+```
+vmake/
+├── rtl/                 SystemVerilog RTL (10 files, ~3.4k lines)
+│   ├── gatev_pkg.sv          Package: params, AXI widths, SiLU function
+│   ├── Accelerator_Top.sv    Top-level accelerator wrapper
+│   ├── gatev_top.sv          AXI4-Lite slave + config/task control
+│   ├── gatev_axi4_master.sv  AXI4 Full master (burst read/write)
+│   ├── gatev_axi_lite_slave.sv  AXI4-Lite slave interface
+│   ├── gatev_mac_engine.sv   Systolic array, requantizer, SiLU LUT
+│   ├── gatev_backbone.sv     Line buffer, maxpool, tile scheduler
+│   ├── gatev_async_fifo.sv   CDC FIFO utility
+│   ├── gatev_ddr3_model.sv   DDR3 behavioral model (sim only)
+│   └── tb_gatev.sv           Self-checking testbench
+├── scripts/             Vivado Tcl driver scripts
+│   ├── vivado_create_project.tcl
+│   ├── vivado_create_bd.tcl  Block design
+│   ├── vivado_synth.tcl      Synthesis (100 MHz)
+│   ├── vivado_sim.tcl        XSim batch/GUI
+│   ├── capture_bd_screenshot.tcl
+│   └── debug_sim.tcl
+├── constraints/
+│   └── gatev_constraints.xdc  100 MHz clock (`create_clock -period 10.000`)
+├── sim/
+│   ├── run.do           Questa/ModelSim script (compile + run 200us)
+│   └── wave.do          Waveform view configuration
+├── board_files/
+│   └── genesys2/        Digilent Genesys-2 board files (H/*.xml)
+├── Makefile             Linux/macOS/WSL build & sim targets
+├── build.bat            Windows equivalent
+└── Evaluation/          *(reference)* C-DAC VEGA AS1061 delivery package
+```
 
-## Running the Simulation (Linux/macOS or WSL)
+## How it works
+`make` builds a self-contained Vivado project at `../GatE-V/`, copying `rtl/`, `constraints/`, and `board_files/` into it. Run `make help` for the interactive target menu.
 
-1. **Terminal Setup:**
-   Ensure `vivado` is available in your PATH. Change directory to the `vmake` folder.
+## Make Targets (Linux/macOS/WSL)
 
-2. **Simulation:**
-   Run the following command to execute the block design creation and behavioral simulation in batch mode:
-   ```bash
-   make sim
-   ```
-   To specify the number of tiles (default is 4):
-   ```bash
-   make sim NUM_TILES=4
-   ```
+| Target | Description |
+|--------|-------------|
+| `make help` | Show interactive help menu |
+| `make prepare` | Sync RTL/constraints/board_files into the Vivado project |
+| `make bd` | Generate block design (batch) |
+| `make synth` | Synthesize design at 100 MHz |
+| `make gatev` | Full flow: bd + synth + sim |
+| `make sim` | Vivado XSim batch (default 4 tiles) |
+| `make sim-gui` | Vivado XSim with waveforms |
+| `make questa` | Questa/ModelSim batch (runs `sim/run.do`, 200us) |
+| `make questa-gui` | Questa/ModelSim with GUI |
+| `make open` | Open the Vivado project in GUI |
+| `make clean` | Remove all build artifacts + `../GatE-V` project |
 
-3. **GUI Simulation:**
-   To open the Vivado GUI and view waveforms:
-   ```bash
-   make sim-gui
-   ```
+**Options**: `make sim NUM_TILES=2` — tile count 1–4, default 4.
 
-4. **Generating Block Design:**
-   If you just want to generate the block design:
-   ```bash
-   make bd
-   ```
+## Questa/ModelSim (direct)
+```bash
+vsim -c -do "do sim/run.do"     # batch
+vsim -do "do sim/run.do"        # GUI
+```
 
-5. **Sync RTL:**
-   Sync RTL to Vivado project:
-   ```bash
-   make prepare
-   ```
+## Windows (`build.bat`)
+```cmd
+build.bat gatev          rem full flow (bd + synth + sim)
+build.bat synth
+build.bat bd
+build.bat sim
+build.bat sim 2          rem NUM_TILES
+build.bat sim-gui
+build.bat questa
+build.bat questa-gui
+build.bat clean
+```
+`build.bat` with no argument defaults to `bd`.
 
-5. **Cleaning Build Files:**
-   To remove generated simulation artifacts (Vivado and Questa) and the Vivado project entirely:
-   ```bash
-   make clean
-   ```
-
-
-## Running the Simulation (ModelSim/Questa)
-1. **Terminal Setup:**
-   Ensure `vsim` is available in your PATH. Change directory to the `vmake` folder.
-   
-2. **Batch Simulation:**
-   ```bash
-   make questa
-   ```
-   Or directly:
-   ```bash
-   vsim -c -do "do sim/run.do"
-   ```
-
-3. **GUI Simulation:**
-   ```bash
-   make questa-gui
-   ```
-   Or directly:
-   ```bash
-   vsim -do "do sim/run.do"
-   ```
-
-## Running the Simulation (Windows)
-Because the `Makefile` relies on native Linux commands, a `build.bat` script is provided for native Windows users. Ensure Vivado and/or ModelSim is added to your PATH (e.g. from the Vivado Tcl Shell or Command Prompt). Change directory to the `vmake` folder.
-
-1. **Vivado Simulation:**
-   ```cmd
-   build.bat sim
-   build.bat sim 4
-   build.bat sim-gui
-   ```
-
-2. **ModelSim/Questa Simulation:**
-   ```cmd
-   build.bat questa
-   build.bat questa-gui
-   ```
-
-3. **Generating Block Design & Synthesis:**
-   ```cmd
-   build.bat bd
-   build.bat synth
-   build.bat gatev
-   ```
-
-4. **Cleaning Build Files:**
-   ```cmd
-   build.bat clean
-   ```
+## Simulation Notes
+- `tb_gatev.sv` is self-checking; Questa runs 200 us by default.
+- NUM_TILES range is 1–4 (validated in `sim/run.do`).
+- `gatev_ddr3_model.sv` is a simulation-only behavioral DDR3 model.

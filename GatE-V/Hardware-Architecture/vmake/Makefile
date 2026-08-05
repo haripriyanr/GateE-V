@@ -49,7 +49,8 @@ prepare:
 	@cp -r board_files $(PRJ_SRC_DIR)/ 2>/dev/null || true
 
 # ── Open Vivado GUI ──────────────────────────────────────────────
-open:
+open: prepare
+	@test -f $(PRJ_DIR)/GatE-V.xpr || $(VIVADO) -mode batch -source $(SCRIPTS)/vivado_create_project.tcl -tclargs $(PRJ_DIR) $(PRJ_SRC_DIR)
 	$(VIVADO) $(PRJ_DIR)/GatE-V.xpr &
 
 # ── Block Design (batch) ─────────────────────────────────────────

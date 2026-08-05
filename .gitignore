@@ -55,3 +55,14 @@ transcript
 **/DVCon_2026/Application/.docker_scripts/
 **/DVCon_2026/VIVADO_PROJECT/
 **/DVCon_2026/GEN_BIT_OUT/
+
+# Hard-coded toolchains + large scratch/export artifacts (kept out of git)
+**/Application/toolchain-bare/
+**/toolchain-bare/
+/xsim_full_soc/
+*.str
+eval_*_*.png
+*Rapid_Guide_*.png
+*Readme.pdf-*.png
+**/DVCon_2026/DVCon_SoC_SRC/TB/unisims_ver/
+DVCon_India_2026_DC_Stage3A_166.zip

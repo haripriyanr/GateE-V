@@ -309,7 +309,6 @@ module gatev_shared_mac_engine (
     state_e state, next;
 
     logic [7:0]  tile_count;
-    logic [7:0]  cycle_count;
     logic [5:0]  w_phase;    // 0..(MAC_COLS*ceil(MAC_ROWS/8)-1): column*words_per_col
     logic [4:0]  act_phase;  // 0..(MAC_ROWS-1)
     logic        ld_done;
@@ -379,7 +378,6 @@ module gatev_shared_mac_engine (
         if (!rst_n) begin
             w_phase     <= 6'd0;
             act_phase   <= 5'd0;
-            cycle_count <= 8'd0;
             tile_count  <= 8'd0;
             ld_done     <= 1'b0;
             act_ld_done <= 1'b0;
@@ -396,7 +394,6 @@ module gatev_shared_mac_engine (
                     if (act_valid && act_phase == MAC_ROWS - 1) act_ld_done <= 1'b1;
                 end
                 ST_COMPUTE: begin
-                    if (cycle_count < MAC_ROWS + MAC_COLS - 1) cycle_count <= cycle_count + 1;
                 end
                 ST_OUTPUT_HIGH: begin
                     tile_count <= tile_count + 1;
@@ -412,12 +409,10 @@ module gatev_shared_mac_engine (
                     if (next == ST_WEIGHT_LOAD) begin
                         w_phase     <= 6'd0;
                         act_phase   <= 5'd0;
-                        cycle_count <= 8'd0;
                         ld_done     <= 1'b0;
                         act_ld_done <= 1'b0;
                     end else if (next == ST_ACT_LOAD) begin
                         act_phase   <= 5'd0;
-                        cycle_count <= 8'd0;
                         act_ld_done <= 1'b0;
                     end
                 end

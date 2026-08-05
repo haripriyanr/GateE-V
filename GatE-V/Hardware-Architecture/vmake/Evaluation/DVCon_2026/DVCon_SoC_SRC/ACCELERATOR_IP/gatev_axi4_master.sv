@@ -73,7 +73,6 @@ module gatev_axi4_master (
     // ── Write FSM (streaming data beats) ────────────────────────────────
     logic wr_state, wr_next;
     logic [7:0]  wr_beat_cnt;   // beats remaining
-    logic        wr_addr_done, wr_aw_accepted;
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -91,8 +90,6 @@ module gatev_axi4_master (
             m_axi_bready    <= 1'b0;
             wr_ack          <= 1'b0;
             wr_beat_cnt     <= 8'd0;
-            wr_addr_done    <= 1'b0;
-            wr_aw_accepted  <= 1'b0;
             wr_data_ready   <= 1'b0;
         end else begin
             wr_state <= wr_next;
@@ -102,8 +99,6 @@ module gatev_axi4_master (
 
             case (wr_state)
                 IDLE: begin
-                    wr_addr_done   <= 1'b0;
-                    wr_aw_accepted <= 1'b0;
                     if (wr_req) begin
                         m_axi_awid    <= {AXI_ID_W{1'b0}};
                         m_axi_awaddr  <= wr_addr;
@@ -121,7 +116,6 @@ module gatev_axi4_master (
                     // Accept AW
                     if (m_axi_awvalid && m_axi_awready) begin
                         m_axi_awvalid  <= 1'b0;
-                        wr_aw_accepted <= 1'b1;
                     end
                     // Stream data beats
                     if (wr_beat_cnt > 0 && wr_data_valid && !m_axi_wvalid) begin
