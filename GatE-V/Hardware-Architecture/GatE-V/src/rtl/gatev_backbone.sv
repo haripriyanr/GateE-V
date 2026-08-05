@@ -379,7 +379,7 @@ module gatev_conv2d_tile_scheduler (
         next = state;
         case (state)
             ST_IDLE:          if (start)               next = ST_WEIGHT_LOAD;
-            ST_WEIGHT_LOAD:   if (w_col_cnt == WT_PHASES) next = ST_WAIT_MAC;
+            ST_WEIGHT_LOAD:   if (w_col_cnt == WT_PHASES) next = ST_FEED_ACT;
             ST_FEED_ACT:      if (act_done)            next = ST_WAIT_MAC;
             ST_WAIT_MAC:      if (mac_out_valid)       next = ST_OUTPUT_LO;
             ST_OUTPUT_LO:     if (out_ready)           next = ST_WAIT_MAC_HI;

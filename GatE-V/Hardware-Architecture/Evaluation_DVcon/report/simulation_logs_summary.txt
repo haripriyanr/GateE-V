@@ -1,0 +1,27 @@
+================================================================================
+GatE-V Stage 3A Simulation and Synthesis Results Summary
+Team 166 (Byte Silicon) — DVCon India 2026 Design Contest
+================================================================================
+
+1. QUESTASIM 2019.2 / 2026.1 REAL SIMULATION SUMMARY:
+--------------------------------------------------------------------------------
+- Target System:       VEGA AS1061 RISC-V 64-bit Core + GatE-V Accelerator V3
+- Integrated Clock:    50.0 MHz (20 ns clock period)
+- Simulation Window:   1,000 µs (1,000,000 ns continuous trace window)
+- Firmware Execution:  GatE-V Bare-Metal RISC-V Self-Test Firmware
+- Accelerator Status:  acc_done asserted successfully
+- Conv2D Verification: All 6 layers verified matching golden targets (Layer 0-4 = 93, Layer 5 = 127)
+- Hardware Counters:   2,639 Cycles, 3,840 Read Bytes, 384 Write Bytes, 1,322 MAC Cycles, 224 Stall Cycles
+- Verification Result: ===== GATE-V ACCELERATOR TEST PASSED =====
+
+2. VIVADO 2026.1 SYNTHESIS & RESOURCE UTILIZATION (Kintex-7 xc7k325tffg900-2):
+--------------------------------------------------------------------------------
+- Slice LUTs (SoC Total):    88,054 / 203,800  (43.21%)  [CDAC Ceiling: <= 45.0%]
+- GatE-V Accelerator LUTs:   5,360  / 203,800  (2.63%)
+- Slice Registers (SoC Total): 56,312 / 407,600  (13.82%)  [CDAC Ceiling: <= 100.0%]
+- DSP48E1 (Accelerator):     544    / 840      (64.76%)  [CDAC Ceiling: <= 90.0%]
+- DSP48E1 (SoC Total):         594    / 840      (70.71%)  [CDAC Ceiling: <= 90.0%]
+- Block RAM (BRAM18 Tiles):   122    / 890      (13.70%)  [CDAC Ceiling: <= 100.0%]
+- Target Frequency:           50.0 MHz
+- Synthesis Outcome:          CLEAN SYNTHESIS (0 Errors, 0 Critical Warnings)
+================================================================================

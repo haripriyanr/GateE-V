@@ -146,10 +146,10 @@ module gatev_requantize (
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            scaled      <= 32'd0;
+            scaled        <= 32'd0;
             valid_pipe[1] <= 1'b0;
         end else begin
-            scaled        <= $signed(mul_result[31:0]) >>> shift_r;
+            scaled        <= 32'($signed(mul_result) >>> shift_r);
             valid_pipe[1] <= valid_pipe[0];
         end
     end

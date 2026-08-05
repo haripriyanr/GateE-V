@@ -1,0 +1,42 @@
+================================================================================
+DVCon India 2026 Design Contest — Stage 3A Submission Instructions
+Team ID: 166 (Byte Silicon)
+Project: GatE-V — Task-Aware Object Detector Accelerator on VEGA RISC-V SoC
+================================================================================
+
+DIRECTORY STRUCTURE IN GOOGLE DRIVE:
+--------------------------------------------------------------------------------
+1. Document/
+   - DVCon_India_2026_DC_Stage3A_Report_166.pdf
+   - figures/ (Performance plots, waveforms, architecture diagrams)
+   - simulation_logs_summary.txt (Summary of QuestaSim & Vivado synthesis results)
+
+2. Readme/
+   - SUBMISSION_INSTRUCTIONS.txt (This file)
+   - README.md (Detailed system & architectural specifications)
+
+3. Env/
+   - DVCon_2026/ (Complete executable environment containing SoC RTL, GatE-V IP, Bare-metal Firmware, RUN scripts, and Headless simulation harness)
+
+--------------------------------------------------------------------------------
+QUICK EXECUTION GUIDE (REPLICATING EVALUATION STEPS):
+--------------------------------------------------------------------------------
+
+1. Headless QuestaSim Simulation:
+   $ cd Env/DVCon_2026/Questa_headless_sim
+   $ vsim -c -do run_questa_headless.do
+   $ python3 parse_vcd.py
+
+2. Vivado Synthesis (Kintex-7 xc7k325tffg900-2):
+   $ cd Env/DVCon_2026/RUN
+   $ vivado -mode batch -source ../TCL/DVCon_SYN.tcl
+
+3. Interactive Menu Workflow:
+   $ cd Env/DVCon_2026/RUN
+   $ ./run.sh
+   (Select 1 for Simulation, 2 for Synthesis)
+
+--------------------------------------------------------------------------------
+CONTACT & TEAM:
+Team 166 (Byte Silicon)
+================================================================================

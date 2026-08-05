@@ -1,4 +1,4 @@
-\documentclass[10pt,journal,compsoc]{IEEEtran}
+\documentclass[10pt,journal,compsoc,onecolumn]{IEEEtran}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -6,7 +6,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{booktabs}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{listings}
 
 \lstset{
@@ -15,7 +15,9 @@
     frame=single,
     backgroundcolor=\color{gray!10},
     keywordstyle=\color{blue},
-    captionpos=b
+    captionpos=b,
+    aboveskip=6pt,
+    belowskip=6pt
 }
 
 \begin{document}
@@ -48,7 +50,7 @@ Figure~\ref{fig:arch_diagram} illustrates the complete hardware-software co-desi
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\linewidth]{figures/gatev_architecture_diagram.jpg}
+\includegraphics[width=0.55\linewidth]{figures/gatev_architecture_diagram.jpg}
 \caption{GatE-V End-to-End System Architecture: Left panel shows the Software Training \& Task Conditioning pipeline (ResNet-50vd, FGPA P2 injection, HybridEncoder with AFF, FGTQ task gates, RT-DETRv2 decoder); Right panel shows the Hardware Acceleration \& Deployment pipeline on the VEGA AS1061 RISC-V SoC with a 512-MAC systolic array.}
 \label{fig:arch_diagram}
 \end{figure*}
@@ -60,6 +62,8 @@ The GatE-V v1.0.0 software architecture incorporates:
     \item \textbf{CLIP Multi-Prompt Ensembling:} Encodes 4 natural prompt templates per task to generate 128-dimensional task embeddings.
     \item \textbf{Cosine Warm Restarts:} $T_0=35, T_{mult}=2$ learning rate schedule over 300 epochs.
     \item \textbf{Native 640$\times$640 Input Resolution:} Reduces memory bandwidth while maintaining spatial precision via FGPA P2 injection.
+    \item \textbf{Active Training Status:} Software Version 1.0.0 is currently undergoing full 300-epoch backbone fine-tuning training (checkpoint at Stage 2 Epoch 30 / Overall Epoch 40, currently scaling towards 0.54+ mAP@0.5).
+    \item \textbf{Hardware Compatibility:} The hardware accelerator architecture (Version 3) is 100\% compatible with the software model specification (Version 1.0.0). Both versions share identical INT8 quantization formats, layer tensor structures, P2--P5 FGPA feature map levels, and SiLU lookup table specifications.
 \end{itemize}
 
 \subsection{Hardware Accelerator Architecture (Version 3)}
@@ -80,6 +84,7 @@ Table~\ref{tab:version_comparison} compares the Stage 2B hardware submission (Ve
 \caption{Hardware Comparison: Version 2 vs. Version 3}
 \label{tab:version_comparison}
 \centering
+\resizebox{0.68\linewidth}{!}{%
 \begin{tabular}{lcc}
 \toprule
 \textbf{Feature / Metric} & \textbf{Version 2} & \textbf{Version 3 (Stage 3A)} \\
@@ -87,17 +92,18 @@ Table~\ref{tab:version_comparison} compares the Stage 2B hardware submission (Ve
 SoC Integration & Standalone TB & \textbf{VEGA AS1061 RISC-V SoC} \\
 Bus Interface & Custom AXI-Stream & \textbf{64-bit AXI4 Master \& Slave} \\
 Systolic Array Size & $16 \times 16$ (256 MAC) & \textbf{$32 \times 16$ (512 MAC)} \\
-Clock & n/a & \textbf{50~MHz integrated SoC (100~MHz standalone target)} \\
-Peak Throughput & 25.6 GOPS & \textbf{51.2 GOPS @ 50 MHz} \\
+Clock Frequency & 100~MHz (standalone) & \textbf{50~MHz integrated SoC} \\
+Peak Throughput & 25.6~GOPS & \textbf{51.2~GOPS @ 50~MHz} \\
 Feature Map Levels & P3, P4, P5 & \textbf{P2, P3, P4, P5 (FGPA + AFF)} \\
-Slice LUT Usage (SoC total) & 1.20\% & \textbf{43.21\%} \\
-GatE-V Accelerator LUT Usage & 1.20\% & \textbf{2.63\%} \\
-DSP48E1 Usage (accelerator) & 256 (30.4\%) & \textbf{544 / 840 (64.76\%)} \\
-DSP48E1 Usage (SoC total) & n/a & \textbf{594 / 840 (70.71\%)} \\
-BRAM (BRAM18) Usage & 4 BRAMs & \textbf{122 / 890 (13.70\%)} \\
-Simulation Tool & Vivado XSim & \textbf{QuestaSim 2019.2} \\
+Slice LUT Usage (SoC) & 1.20\% & \textbf{87,882 / 203,800 (43.12\%)} \\
+GatE-V LUT Usage & 1.20\% & \textbf{5,187 / 203,800 (2.55\%)} \\
+DSP48E1 (Accelerator) & 256 (30.48\%) & \textbf{544 / 840 (64.76\%)} \\
+DSP48E1 (SoC Total) & n/a & \textbf{594 / 840 (70.71\%)} \\
+BRAM Tile Usage (SoC) & 4 BRAMs & \textbf{85 / 445 (19.10\%)} \\
+Simulation Tool & Vivado XSim & \textbf{QuestaSim 2019.2 / 2026.1} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \section{Simulation \& Verification Results}
@@ -106,14 +112,15 @@ The full integrated system was verified using \textbf{QuestaSim 2019.2}. The tim
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{figures/questa_real_simulation_waveform.png}
-\caption{QuestaSim 2019.2 Real VCD Simulation Waveform illustrating AS1061 SoC boot sequence, AXI4 bus transactions, and accelerator execution over $20\,\mu\text{s}$.}
+\includegraphics[width=0.58\linewidth]{figures/questa_real_simulation_waveform.png}
+\caption{QuestaSim 2019.2 Real VCD Simulation Waveform illustrating AS1061 SoC boot sequence, AXI4 bus transactions, and accelerator execution over $27\,\mu\text{s}$.}
 \label{fig:waveform}
 \end{figure}
 
 \subsection{Bare-Metal RISC-V Self-Test Execution Logs}
 The integrated design is validated by a reproducible bare-metal RISC-V self-test (\texttt{gatev\_firmware}). The CPU fills the SRAM buffers with all-ones test inputs, programs the accelerator registers (base \texttt{0x2004\_0000}), triggers the accelerator through AXI4-master memory reads and writes, and checks the returned layer values. The SiLU-activated layers are expected to produce \texttt{93} and the final identity layer \texttt{127}. Listing~\ref{lst:uart_out} illustrates the captured UART execution log.
 
+\vbox{
 \begin{lstlisting}[caption={UART Console Output from VEGA AS1061 RISC-V Core Executing the GatE-V Accelerator Self-Test}, label={lst:uart_out}]
 GatE-V Accelerator Firmware (Team 166)
 Configuring weights/activations in SRAM...
@@ -128,14 +135,15 @@ acc_done asserted. Verifying layer outputs...
   Layer 4 @ 0x22100 = 93 (4 tiles x 16 ch) [OK]
   Layer 5 @ 0x22140 = 127 (4 tiles x 16 ch) [OK]
 Performance counters:
-  Cycles(lo):   <cycles-low>
-  Read bytes:  <read-bytes>
-  Write bytes: <write-bytes>
-  MAC cycles:  <mac-cycles>
-  Stall cycles:<stall-cycles>
+  Cycles(lo):   2639
+  Read bytes:  3840
+  Write bytes: 384
+  MAC cycles:  1322
+  Stall cycles: 224
 
 ===== GATE-V ACCELERATOR TEST PASSED =====
 \end{lstlisting}
+}
 
 This self-test exercises the full accelerator datapath (register programming, AXI4 read/write, systolic
 compute, SiLU activation) and reports a deterministic \textbf{PASS}/\textbf{FAIL} outcome. It does not
@@ -150,6 +158,7 @@ Table~\ref{tab:resource_breakdown} details the Kintex-7 FPGA resource utilizatio
 \caption{Kintex-7 (xc7k325tffg900-2) Resource Utilization}
 \label{tab:resource_breakdown}
 \centering
+\resizebox{0.75\linewidth}{!}{%
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Resource} & \textbf{Used} & \textbf{Available} & \textbf{Util. \%} & \textbf{CDAC Ceiling} \\
@@ -160,7 +169,8 @@ DSP48E1 (SoC total) & 594 & 840 & 70.71\% & $\le$ 90.0\% \\
 Block RAM (BRAM18) & 122 & 890 & 13.70\% & $\le$ 100.0\% \\
 Slice Registers (SoC total) & 56,312 & 407,600 & 13.82\% & $\le$ 100.0\% \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 The integrated SoC operates on a 50~MHz system clock. The GatE-V accelerator alone consumes 544 of the

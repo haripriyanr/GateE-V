@@ -118,16 +118,16 @@ module gatev_axi4_master (
                         m_axi_awvalid  <= 1'b0;
                     end
                     // Stream data beats
-                    if (wr_beat_cnt > 0 && wr_data_valid && !m_axi_wvalid) begin
-                        m_axi_wdata  <= wr_data_in;
-                        m_axi_wstrb  <= wr_strb;
-                        m_axi_wlast  <= (wr_beat_cnt == 1);
-                        m_axi_wvalid <= 1'b1;
-                        wr_beat_cnt  <= wr_beat_cnt - 1;
-                    end
                     if (m_axi_wvalid && m_axi_wready) begin
-                        m_axi_wvalid <= 1'b0;
+                        m_axi_wvalid  <= 1'b0;
                         wr_data_ready <= 1'b1;
+                        if (wr_beat_cnt > 0)
+                            wr_beat_cnt <= wr_beat_cnt - 1;
+                    end else if (wr_beat_cnt > 0 && wr_data_valid && !m_axi_wvalid) begin
+                        m_axi_wdata   <= wr_data_in;
+                        m_axi_wstrb   <= wr_strb;
+                        m_axi_wlast   <= (wr_beat_cnt == 1);
+                        m_axi_wvalid  <= 1'b1;
                     end
                     // Accept write response
                     m_axi_bready <= 1'b1;

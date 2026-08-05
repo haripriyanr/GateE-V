@@ -1,0 +1,1 @@
+-debug "typical" "tb_gatev" -s "tb_gatev_sim" 

@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="test_bench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="test_bench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="999982fs"></ZoomStartTime>
+      <ZoomEndTime time="1000004fs"></ZoomEndTime>
+      <Cursor1Time time="1000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="322"></NameColumnWidth>
+      <ValueColumnWidth column_width="135"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="200" />
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/clk_in1_p">
+      <obj_property name="ElementShortName">clk_in1_p</obj_property>
+      <obj_property name="ObjectShortName">clk_in1_p</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider324" type="divider">
+      <obj_property name="label">UART SIGNALS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/sin0">
+      <obj_property name="ElementShortName">sin0</obj_property>
+      <obj_property name="ObjectShortName">sin0</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/sout0">
+      <obj_property name="ElementShortName">sout0</obj_property>
+      <obj_property name="ObjectShortName">sout0</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider325" type="divider">
+      <obj_property name="label">ACCELERATOR SIGNALS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/axi_clk">
+      <obj_property name="ElementShortName">axi_clk</obj_property>
+      <obj_property name="ObjectShortName">axi_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/reset_n">
+      <obj_property name="ElementShortName">reset_n</obj_property>
+      <obj_property name="ObjectShortName">reset_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_awvalid">
+      <obj_property name="ElementShortName">acc_m_axi_awvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_awid">
+      <obj_property name="ElementShortName">acc_m_axi_awid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_awlen">
+      <obj_property name="ElementShortName">acc_m_axi_awlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_awsize">
+      <obj_property name="ElementShortName">acc_m_axi_awsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_awburst">
+      <obj_property name="ElementShortName">acc_m_axi_awburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_awlock">
+      <obj_property name="ElementShortName">acc_m_axi_awlock[0:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awlock[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_awcache">
+      <obj_property name="ElementShortName">acc_m_axi_awcache[3:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awcache[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_awqos">
+      <obj_property name="ElementShortName">acc_m_axi_awqos[3:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awqos[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_awaddr">
+      <obj_property name="ElementShortName">acc_m_axi_awaddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awaddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_awprot">
+      <obj_property name="ElementShortName">acc_m_axi_awprot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awprot[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_awready">
+      <obj_property name="ElementShortName">acc_m_axi_awready</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_awready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_wvalid">
+      <obj_property name="ElementShortName">acc_m_axi_wvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_wvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_wlast">
+      <obj_property name="ElementShortName">acc_m_axi_wlast</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_wlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_wdata">
+      <obj_property name="ElementShortName">acc_m_axi_wdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_wdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_wstrb">
+      <obj_property name="ElementShortName">acc_m_axi_wstrb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_wstrb[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_wready">
+      <obj_property name="ElementShortName">acc_m_axi_wready</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_wready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_bready">
+      <obj_property name="ElementShortName">acc_m_axi_bready</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_bready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_bvalid">
+      <obj_property name="ElementShortName">acc_m_axi_bvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_bvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_bid">
+      <obj_property name="ElementShortName">acc_m_axi_bid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_bid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_bresp">
+      <obj_property name="ElementShortName">acc_m_axi_bresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_bresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_arvalid">
+      <obj_property name="ElementShortName">acc_m_axi_arvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_arid">
+      <obj_property name="ElementShortName">acc_m_axi_arid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_arlen">
+      <obj_property name="ElementShortName">acc_m_axi_arlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_arsize">
+      <obj_property name="ElementShortName">acc_m_axi_arsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_arburst">
+      <obj_property name="ElementShortName">acc_m_axi_arburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_arlock">
+      <obj_property name="ElementShortName">acc_m_axi_arlock[0:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arlock[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_arcache">
+      <obj_property name="ElementShortName">acc_m_axi_arcache[3:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arcache[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_arqos">
+      <obj_property name="ElementShortName">acc_m_axi_arqos[3:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arqos[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_araddr">
+      <obj_property name="ElementShortName">acc_m_axi_araddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_araddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_arprot">
+      <obj_property name="ElementShortName">acc_m_axi_arprot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arprot[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_arready">
+      <obj_property name="ElementShortName">acc_m_axi_arready</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_arready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_rready">
+      <obj_property name="ElementShortName">acc_m_axi_rready</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_rready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_rvalid">
+      <obj_property name="ElementShortName">acc_m_axi_rvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_rvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_rid">
+      <obj_property name="ElementShortName">acc_m_axi_rid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_rid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_m_axi_rlast">
+      <obj_property name="ElementShortName">acc_m_axi_rlast</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_rlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_rresp">
+      <obj_property name="ElementShortName">acc_m_axi_rresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_rresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_m_axi_rdata">
+      <obj_property name="ElementShortName">acc_m_axi_rdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_m_axi_rdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_awid">
+      <obj_property name="ElementShortName">acc_s_axi_awid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_awaddr">
+      <obj_property name="ElementShortName">acc_s_axi_awaddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awaddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_awlen">
+      <obj_property name="ElementShortName">acc_s_axi_awlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_awsize">
+      <obj_property name="ElementShortName">acc_s_axi_awsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_awburst">
+      <obj_property name="ElementShortName">acc_s_axi_awburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_awlock">
+      <obj_property name="ElementShortName">acc_s_axi_awlock</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awlock</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_awcache">
+      <obj_property name="ElementShortName">acc_s_axi_awcache[3:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awcache[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_awprot">
+      <obj_property name="ElementShortName">acc_s_axi_awprot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awprot[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_awqos">
+      <obj_property name="ElementShortName">acc_s_axi_awqos[3:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awqos[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_awvalid">
+      <obj_property name="ElementShortName">acc_s_axi_awvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_awready">
+      <obj_property name="ElementShortName">acc_s_axi_awready</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_awready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_wdata">
+      <obj_property name="ElementShortName">acc_s_axi_wdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_wdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_wstrb">
+      <obj_property name="ElementShortName">acc_s_axi_wstrb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_wstrb[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_wlast">
+      <obj_property name="ElementShortName">acc_s_axi_wlast</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_wlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_wvalid">
+      <obj_property name="ElementShortName">acc_s_axi_wvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_wvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_wready">
+      <obj_property name="ElementShortName">acc_s_axi_wready</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_wready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_bready">
+      <obj_property name="ElementShortName">acc_s_axi_bready</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_bready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_bid">
+      <obj_property name="ElementShortName">acc_s_axi_bid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_bid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_bresp">
+      <obj_property name="ElementShortName">acc_s_axi_bresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_bresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_bvalid">
+      <obj_property name="ElementShortName">acc_s_axi_bvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_bvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_arid">
+      <obj_property name="ElementShortName">acc_s_axi_arid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_araddr">
+      <obj_property name="ElementShortName">acc_s_axi_araddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_araddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_arlen">
+      <obj_property name="ElementShortName">acc_s_axi_arlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_arsize">
+      <obj_property name="ElementShortName">acc_s_axi_arsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_arburst">
+      <obj_property name="ElementShortName">acc_s_axi_arburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_arlock">
+      <obj_property name="ElementShortName">acc_s_axi_arlock</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arlock</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_arcache">
+      <obj_property name="ElementShortName">acc_s_axi_arcache[3:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arcache[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_arprot">
+      <obj_property name="ElementShortName">acc_s_axi_arprot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arprot[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_arqos">
+      <obj_property name="ElementShortName">acc_s_axi_arqos[3:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arqos[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_arvalid">
+      <obj_property name="ElementShortName">acc_s_axi_arvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_arready">
+      <obj_property name="ElementShortName">acc_s_axi_arready</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_arready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_rready">
+      <obj_property name="ElementShortName">acc_s_axi_rready</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_rready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_rid">
+      <obj_property name="ElementShortName">acc_s_axi_rid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_rid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_rdata">
+      <obj_property name="ElementShortName">acc_s_axi_rdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_rdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/acc_s_axi_rresp">
+      <obj_property name="ElementShortName">acc_s_axi_rresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_rresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_rlast">
+      <obj_property name="ElementShortName">acc_s_axi_rlast</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_rlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/acc_s_axi_rvalid">
+      <obj_property name="ElementShortName">acc_s_axi_rvalid</obj_property>
+      <obj_property name="ObjectShortName">acc_s_axi_rvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider326" type="divider">
+      <obj_property name="label">ROM SIGNALS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_awid">
+      <obj_property name="ElementShortName">rom_axi_awid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_awid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_awaddr">
+      <obj_property name="ElementShortName">rom_axi_awaddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_awaddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_awlen">
+      <obj_property name="ElementShortName">rom_axi_awlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_awlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_awsize">
+      <obj_property name="ElementShortName">rom_axi_awsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_awsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_awburst">
+      <obj_property name="ElementShortName">rom_axi_awburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_awburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_awvalid">
+      <obj_property name="ElementShortName">rom_axi_awvalid</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_awvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_awready">
+      <obj_property name="ElementShortName">rom_axi_awready</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_awready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_wdata">
+      <obj_property name="ElementShortName">rom_axi_wdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_wdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_wstrb">
+      <obj_property name="ElementShortName">rom_axi_wstrb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_wstrb[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_wlast">
+      <obj_property name="ElementShortName">rom_axi_wlast</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_wlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_wvalid">
+      <obj_property name="ElementShortName">rom_axi_wvalid</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_wvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_wready">
+      <obj_property name="ElementShortName">rom_axi_wready</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_wready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_bid">
+      <obj_property name="ElementShortName">rom_axi_bid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_bid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_bresp">
+      <obj_property name="ElementShortName">rom_axi_bresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_bresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_bvalid">
+      <obj_property name="ElementShortName">rom_axi_bvalid</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_bvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_bready">
+      <obj_property name="ElementShortName">rom_axi_bready</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_bready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_arid">
+      <obj_property name="ElementShortName">rom_axi_arid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_arid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_araddr">
+      <obj_property name="ElementShortName">rom_axi_araddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_araddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_arlen">
+      <obj_property name="ElementShortName">rom_axi_arlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_arlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_arsize">
+      <obj_property name="ElementShortName">rom_axi_arsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_arsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_arburst">
+      <obj_property name="ElementShortName">rom_axi_arburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_arburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_arvalid">
+      <obj_property name="ElementShortName">rom_axi_arvalid</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_arready">
+      <obj_property name="ElementShortName">rom_axi_arready</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_arready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_rid">
+      <obj_property name="ElementShortName">rom_axi_rid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_rid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_rdata">
+      <obj_property name="ElementShortName">rom_axi_rdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_rdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/rom_axi_rresp">
+      <obj_property name="ElementShortName">rom_axi_rresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_rresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_rlast">
+      <obj_property name="ElementShortName">rom_axi_rlast</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_rlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_rvalid">
+      <obj_property name="ElementShortName">rom_axi_rvalid</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_rvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/rom_axi_rready">
+      <obj_property name="ElementShortName">rom_axi_rready</obj_property>
+      <obj_property name="ObjectShortName">rom_axi_rready</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider272" type="divider">
+      <obj_property name="label">PROCESSOR SIGNALS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/aclk">
+      <obj_property name="ElementShortName">aclk</obj_property>
+      <obj_property name="ObjectShortName">aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/aresetn">
+      <obj_property name="ElementShortName">aresetn</obj_property>
+      <obj_property name="ObjectShortName">aresetn</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arid">
+      <obj_property name="ElementShortName">proc_m0_axi_arid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awid">
+      <obj_property name="ElementShortName">proc_m0_axi_awid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awid">
+      <obj_property name="ElementShortName">proc_m1_axi_awid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arid">
+      <obj_property name="ElementShortName">proc_m1_axi_arid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/plic_ext_intr">
+      <obj_property name="ElementShortName">plic_ext_intr[11:0]</obj_property>
+      <obj_property name="ObjectShortName">plic_ext_intr[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/plic_softwr_intr">
+      <obj_property name="ElementShortName">plic_softwr_intr[11:0]</obj_property>
+      <obj_property name="ObjectShortName">plic_softwr_intr[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/plic_timer_intr">
+      <obj_property name="ElementShortName">plic_timer_intr[11:0]</obj_property>
+      <obj_property name="ObjectShortName">plic_timer_intr[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_halt_request">
+      <obj_property name="ElementShortName">proc_halt_request</obj_property>
+      <obj_property name="ObjectShortName">proc_halt_request</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_heart_beat">
+      <obj_property name="ElementShortName">proc_heart_beat</obj_property>
+      <obj_property name="ObjectShortName">proc_heart_beat</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_araddr">
+      <obj_property name="ElementShortName">proc_m0_axi_araddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_araddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arburst">
+      <obj_property name="ElementShortName">proc_m0_axi_arburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arcache">
+      <obj_property name="ElementShortName">proc_m0_axi_arcache[3:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arcache[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/\^proc_m0_axi_arid ">
+      <obj_property name="ElementShortName">\^proc_m0_axi_arid [7:0]</obj_property>
+      <obj_property name="ObjectShortName">\^proc_m0_axi_arid [7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arlen">
+      <obj_property name="ElementShortName">proc_m0_axi_arlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arlock">
+      <obj_property name="ElementShortName">proc_m0_axi_arlock</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arlock</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arprot">
+      <obj_property name="ElementShortName">proc_m0_axi_arprot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arprot[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arqos">
+      <obj_property name="ElementShortName">proc_m0_axi_arqos[3:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arqos[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arready">
+      <obj_property name="ElementShortName">proc_m0_axi_arready</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arsize">
+      <obj_property name="ElementShortName">proc_m0_axi_arsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arvalid">
+      <obj_property name="ElementShortName">proc_m0_axi_arvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awaddr">
+      <obj_property name="ElementShortName">proc_m0_axi_awaddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awaddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awburst">
+      <obj_property name="ElementShortName">proc_m0_axi_awburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awcache">
+      <obj_property name="ElementShortName">proc_m0_axi_awcache[3:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awcache[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/\^proc_m0_axi_awid ">
+      <obj_property name="ElementShortName">\^proc_m0_axi_awid [7:0]</obj_property>
+      <obj_property name="ObjectShortName">\^proc_m0_axi_awid [7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awlen">
+      <obj_property name="ElementShortName">proc_m0_axi_awlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awlock">
+      <obj_property name="ElementShortName">proc_m0_axi_awlock</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awlock</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awprot">
+      <obj_property name="ElementShortName">proc_m0_axi_awprot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awprot[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awqos">
+      <obj_property name="ElementShortName">proc_m0_axi_awqos[3:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awqos[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awready">
+      <obj_property name="ElementShortName">proc_m0_axi_awready</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awsize">
+      <obj_property name="ElementShortName">proc_m0_axi_awsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awvalid">
+      <obj_property name="ElementShortName">proc_m0_axi_awvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_awvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_bid">
+      <obj_property name="ElementShortName">proc_m0_axi_bid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_bid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_bready">
+      <obj_property name="ElementShortName">proc_m0_axi_bready</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_bready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_bresp">
+      <obj_property name="ElementShortName">proc_m0_axi_bresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_bresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_bvalid">
+      <obj_property name="ElementShortName">proc_m0_axi_bvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_bvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rdata">
+      <obj_property name="ElementShortName">proc_m0_axi_rdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_rdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rid">
+      <obj_property name="ElementShortName">proc_m0_axi_rid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_rid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rlast">
+      <obj_property name="ElementShortName">proc_m0_axi_rlast</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_rlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rready">
+      <obj_property name="ElementShortName">proc_m0_axi_rready</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_rready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rresp">
+      <obj_property name="ElementShortName">proc_m0_axi_rresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_rresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rvalid">
+      <obj_property name="ElementShortName">proc_m0_axi_rvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_rvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wdata">
+      <obj_property name="ElementShortName">proc_m0_axi_wdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_wdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wlast">
+      <obj_property name="ElementShortName">proc_m0_axi_wlast</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_wlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wready">
+      <obj_property name="ElementShortName">proc_m0_axi_wready</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_wready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wstrb">
+      <obj_property name="ElementShortName">proc_m0_axi_wstrb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_wstrb[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wvalid">
+      <obj_property name="ElementShortName">proc_m0_axi_wvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m0_axi_wvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_araddr">
+      <obj_property name="ElementShortName">proc_m1_axi_araddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_araddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arburst">
+      <obj_property name="ElementShortName">proc_m1_axi_arburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arcache">
+      <obj_property name="ElementShortName">proc_m1_axi_arcache[3:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arcache[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/\^proc_m1_axi_arid ">
+      <obj_property name="ElementShortName">\^proc_m1_axi_arid [7:0]</obj_property>
+      <obj_property name="ObjectShortName">\^proc_m1_axi_arid [7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arlen">
+      <obj_property name="ElementShortName">proc_m1_axi_arlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arlock">
+      <obj_property name="ElementShortName">proc_m1_axi_arlock</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arlock</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arprot">
+      <obj_property name="ElementShortName">proc_m1_axi_arprot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arprot[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arqos">
+      <obj_property name="ElementShortName">proc_m1_axi_arqos[3:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arqos[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arready">
+      <obj_property name="ElementShortName">proc_m1_axi_arready</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arsize">
+      <obj_property name="ElementShortName">proc_m1_axi_arsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arvalid">
+      <obj_property name="ElementShortName">proc_m1_axi_arvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awaddr">
+      <obj_property name="ElementShortName">proc_m1_axi_awaddr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awaddr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awburst">
+      <obj_property name="ElementShortName">proc_m1_axi_awburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awcache">
+      <obj_property name="ElementShortName">proc_m1_axi_awcache[3:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awcache[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/\^proc_m1_axi_awid ">
+      <obj_property name="ElementShortName">\^proc_m1_axi_awid [7:0]</obj_property>
+      <obj_property name="ObjectShortName">\^proc_m1_axi_awid [7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awlen">
+      <obj_property name="ElementShortName">proc_m1_axi_awlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awlock">
+      <obj_property name="ElementShortName">proc_m1_axi_awlock</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awlock</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awprot">
+      <obj_property name="ElementShortName">proc_m1_axi_awprot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awprot[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awqos">
+      <obj_property name="ElementShortName">proc_m1_axi_awqos[3:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awqos[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awready">
+      <obj_property name="ElementShortName">proc_m1_axi_awready</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awsize">
+      <obj_property name="ElementShortName">proc_m1_axi_awsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_awvalid">
+      <obj_property name="ElementShortName">proc_m1_axi_awvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_awvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_bid">
+      <obj_property name="ElementShortName">proc_m1_axi_bid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_bid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_bready">
+      <obj_property name="ElementShortName">proc_m1_axi_bready</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_bready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_bresp">
+      <obj_property name="ElementShortName">proc_m1_axi_bresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_bresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_bvalid">
+      <obj_property name="ElementShortName">proc_m1_axi_bvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_bvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rdata">
+      <obj_property name="ElementShortName">proc_m1_axi_rdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_rdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rid">
+      <obj_property name="ElementShortName">proc_m1_axi_rid[11:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_rid[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rlast">
+      <obj_property name="ElementShortName">proc_m1_axi_rlast</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_rlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rready">
+      <obj_property name="ElementShortName">proc_m1_axi_rready</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_rready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rresp">
+      <obj_property name="ElementShortName">proc_m1_axi_rresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_rresp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rvalid">
+      <obj_property name="ElementShortName">proc_m1_axi_rvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_rvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_wdata">
+      <obj_property name="ElementShortName">proc_m1_axi_wdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_wdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_wlast">
+      <obj_property name="ElementShortName">proc_m1_axi_wlast</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_wlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_wready">
+      <obj_property name="ElementShortName">proc_m1_axi_wready</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_wready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_wstrb">
+      <obj_property name="ElementShortName">proc_m1_axi_wstrb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_wstrb[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_wvalid">
+      <obj_property name="ElementShortName">proc_m1_axi_wvalid</obj_property>
+      <obj_property name="ObjectShortName">proc_m1_axi_wvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/s_debug_pc_get">
+      <obj_property name="ElementShortName">s_debug_pc_get[63:0]</obj_property>
+      <obj_property name="ObjectShortName">s_debug_pc_get[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/soft_reset_en">
+      <obj_property name="ElementShortName">soft_reset_en</obj_property>
+      <obj_property name="ObjectShortName">soft_reset_en</obj_property>
+   </wvobject>
+</wave_config>

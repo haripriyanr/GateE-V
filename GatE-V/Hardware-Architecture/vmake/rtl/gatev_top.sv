@@ -208,11 +208,12 @@ module gatev_top (
     );
 
     // Conv2D Tile Scheduler (config from layer ROM)
+    logic sched_act_valid, sched_act_ready;
     gatev_conv2d_tile_scheduler u_sched (
         .clk(aclk), .rst_n(areset_n),
         .start(sched_start), .busy(sched_busy), .done(sched_done),
         .weight_data(sched_weight), .weight_valid(sched_wvalid), .weight_ready(sched_wready),
-        .act_data(sched_act_data), .act_valid(sched_act_feed), .act_ready(sched_act_feed),
+        .act_data(sched_act_data), .act_valid(sched_act_feed), .act_ready(sched_act_ready),
         .out_data(sched_out), .out_valid(sched_outv), .out_ready(1'b1),
         .cfg_num_in_grps(cfg_layer_num_in_grps),
         .cfg_kernel_size(cfg_layer_kernel_size),
@@ -375,7 +376,7 @@ module gatev_top (
                         wt_raddr       <= wt_raddr + 1;
                     end
                     // Multi-tile activation feed (tiles 1..N-1) from active bank
-                    if (sched_act_feed && act_feed_ptr < (cfg_num_tiles << 3)) begin
+                    if (sched_act_feed && act_feed_ptr < (cfg_num_tiles << 5)) begin
                         sched_act_data <= act_buf[act_feed_ptr];
                         act_feed_ptr   <= act_feed_ptr + 1;
                     end
@@ -398,7 +399,7 @@ module gatev_top (
                                     bg_rd_pending <= 1'b0;
                             end else if (!bg_rd_pending) begin
                                 m_rd_req      <= 1'b1;
-                                m_rd_addr     <= reg_img_addr;
+                                m_rd_addr     <= reg_img_addr + ((layer_idx + 1) * cfg_num_tiles * 32);
                                 m_rd_len      <= (cfg_num_tiles << 2) - 1;
                                 bg_rd_pending <= 1'b1;
                             end
@@ -414,7 +415,7 @@ module gatev_top (
                                 bg_wt_cnt      <= bg_wt_cnt + 1;
                             end else if (!bg_burst_issued) begin
                                 m_rd_req        <= 1'b1;
-                                m_rd_addr       <= reg_wt_addr;
+                                m_rd_addr       <= reg_wt_addr + ((layer_idx + 1) * 512);
                                 m_rd_len        <= 8'd63;
                                 bg_burst_issued <= 1'b1;
                             end

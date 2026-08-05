@@ -62,9 +62,9 @@ vlog $SvOpts $RTL_DIR/tb_gatev.sv
 
 # ── Elaborate & Run ─────────────────────────────────────────────────
 if {$NUM_TILES != 4} {
-    vsim -voptargs="+acc" -G/NUM_TILES=$NUM_TILES work.tb_gatev
+    vsim -voptargs="+acc=npr" -G/NUM_TILES=$NUM_TILES work.tb_gatev
 } else {
-    vsim -voptargs="+acc" work.tb_gatev
+    vsim -voptargs="+acc=npr" work.tb_gatev
 }
 
 # Load waveform configuration
@@ -73,9 +73,10 @@ if {[file exists sim/wave.do]} {
 }
 
 # Run simulation
-run 200us
+run -all
 
 # Print completion
 puts "\n═══════════════════════════════════════════"
 puts " Simulation Complete"
 puts "═══════════════════════════════════════════"
+quit -f
