@@ -24,7 +24,7 @@ module gatev_mac_cell (
 
     logic signed [7:0] weight_q;
 
-    always_ff @(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk) begin
         if (!rst_n)    weight_q <= 8'sd0;
         else if (load) weight_q <= signed'(w_load);
     end
@@ -134,7 +134,7 @@ module gatev_requantize (
     logic [7:0]  result;
     logic [1:0]  valid_pipe;
 
-    always_ff @(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk) begin
         if (!rst_n) begin
             mul_result  <= 48'd0;
             valid_pipe[0] <= 1'b0;
@@ -291,7 +291,7 @@ module gatev_shared_mac_engine (
     input  logic        cfg_with_act,
     input  logic [7:0]  cfg_num_tiles,
 
-    output logic [3:0]  dbg_state
+    (* dont_touch = "true" *) output logic [3:0] dbg_state
 );
 
     typedef enum logic [3:0] {

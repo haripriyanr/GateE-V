@@ -67,7 +67,7 @@ module gatev_top (
     // Ping-pong weight buffers (64 × 64-bit words each)
     logic [63:0] wt_bank_0 [0:63];
     logic [63:0] wt_bank_1 [0:63];
-    logic        bank_sel;       // 0→read from bank_0, write to bank_1; 1→vice versa
+    (* max_fanout = 16 *) logic bank_sel;       // 0→read from bank_0, write to bank_1; 1→vice versa
     logic [5:0]  wt_raddr;
 
     // Ping-pong activation buffers (128 bytes each — 32 bytes/tile × 4 tiles)
@@ -323,12 +323,12 @@ module gatev_top (
                                     act_buf_1[act_ld_cnt*8 + i] <= m_rd_data[i*8 +: 8];
                             end
                             act_ld_cnt <= act_ld_cnt + 1;
-                            if (act_ld_cnt == cfg_num_tiles * ACT_WORDS_PER_TILE - 1)
+                            if (act_ld_cnt == (cfg_num_tiles << 2) - 1)
                                 rd_pending <= 1'b0;
                         end else if (!rd_pending) begin
                             m_rd_req   <= 1'b1;
                             m_rd_addr  <= ld_addr;
-                            m_rd_len   <= (cfg_num_tiles * ACT_WORDS_PER_TILE) - 1;
+                            m_rd_len   <= (cfg_num_tiles << 2) - 1;
                             rd_pending <= 1'b1;
                         end
                     end else begin
@@ -375,7 +375,7 @@ module gatev_top (
                         wt_raddr       <= wt_raddr + 1;
                     end
                     // Multi-tile activation feed (tiles 1..N-1) from active bank
-                    if (sched_act_feed && act_feed_ptr < cfg_num_tiles * MAC_ROWS) begin
+                    if (sched_act_feed && act_feed_ptr < (cfg_num_tiles << 3)) begin
                         sched_act_data <= act_buf[act_feed_ptr];
                         act_feed_ptr   <= act_feed_ptr + 1;
                     end
@@ -383,7 +383,7 @@ module gatev_top (
                     if (bg_load_active) begin
                         if (!bg_load_phase) begin
                             // Phase A: load activations (multi-beat burst)
-                            if (bg_act_cnt >= cfg_num_tiles * ACT_WORDS_PER_TILE) begin
+                            if (bg_act_cnt >= (cfg_num_tiles << 2)) begin
                                 bg_load_phase <= 1'b1;
                                 bg_rd_pending <= 1'b0;
                             end else if (m_rd_valid) begin
@@ -394,12 +394,12 @@ module gatev_top (
                                         act_buf_1[bg_act_cnt*8 + i] <= m_rd_data[i*8 +: 8];
                                 end
                                 bg_act_cnt   <= bg_act_cnt + 1;
-                                if (bg_act_cnt == cfg_num_tiles * ACT_WORDS_PER_TILE - 1)
+                                if (bg_act_cnt == (cfg_num_tiles << 2) - 1)
                                     bg_rd_pending <= 1'b0;
                             end else if (!bg_rd_pending) begin
                                 m_rd_req      <= 1'b1;
                                 m_rd_addr     <= reg_img_addr;
-                                m_rd_len      <= (cfg_num_tiles * ACT_WORDS_PER_TILE) - 1;
+                                m_rd_len      <= (cfg_num_tiles << 2) - 1;
                                 bg_rd_pending <= 1'b1;
                             end
                         end else begin

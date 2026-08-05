@@ -15,7 +15,7 @@ module gatev_axi4_master (
     input  logic [63:0]   rd_addr,
     input  logic [7:0]    rd_len,       // burst length - 1
     output logic [63:0]   rd_data,
-    output logic          rd_valid,
+    (* max_fanout = 16 *) output logic          rd_valid,
 
     // Write: pulse wr_req + addr + data/strb + len; then stream wr_data_valid beats -> wr_ack
     input  logic          wr_req,
