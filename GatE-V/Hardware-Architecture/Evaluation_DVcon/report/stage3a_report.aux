@@ -4,21 +4,24 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}System Architecture}{1}{section.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces GatE-V End-to-End System Architecture: Left panel shows the Software Training \& Task Conditioning pipeline (ResNet-50vd, FGPA P2 injection, HybridEncoder with AFF, FGTQ task gates, RT-DETRv2 decoder); Right panel shows the Hardware Acceleration \& Deployment pipeline on the VEGA AS1061 RISC-V SoC with a 512-MAC systolic array.}}{1}{figure.1}\protected@file@percent }
-\newlabel{fig:arch_diagram}{{1}{1}{GatE-V End-to-End System Architecture: Left panel shows the Software Training \& Task Conditioning pipeline (ResNet-50vd, FGPA P2 injection, HybridEncoder with AFF, FGTQ task gates, RT-DETRv2 decoder); Right panel shows the Hardware Acceleration \& Deployment pipeline on the VEGA AS1061 RISC-V SoC with a 512-MAC systolic array}{figure.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Software Architecture (v1.0.0)}{2}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Hardware Accelerator Architecture (Version 3)}{2}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Hardware Architecture Comparison}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Software Architecture (v1.0.0)}{1}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Hardware Accelerator Architecture (Version 3)}{1}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Hardware Architecture Comparison}{1}{section.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces GatE-V End-to-End System Architecture: Left panel shows the Software Training \& Task Conditioning pipeline (ResNet-50vd, FGPA P2 injection, HybridEncoder with AFF, FGTQ task gates, RT-DETRv2 decoder); Right panel shows the Hardware Acceleration \& Deployment pipeline on the VEGA AS1061 RISC-V SoC with a 512-MAC systolic array.}}{2}{figure.1}\protected@file@percent }
+\newlabel{fig:arch_diagram}{{1}{2}{GatE-V End-to-End System Architecture: Left panel shows the Software Training \& Task Conditioning pipeline (ResNet-50vd, FGPA P2 injection, HybridEncoder with AFF, FGTQ task gates, RT-DETRv2 decoder); Right panel shows the Hardware Acceleration \& Deployment pipeline on the VEGA AS1061 RISC-V SoC with a 512-MAC systolic array}{figure.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Hardware Comparison: Version 2 vs. Version 3}}{2}{table.1}\protected@file@percent }
 \newlabel{tab:version_comparison}{{1}{2}{Hardware Comparison: Version 2 vs. Version 3}{table.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Simulation \& Verification Results}{2}{section.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces QuestaSim 2019.2 Real VCD Simulation Waveform illustrating AS1061 SoC boot sequence, AXI4 bus transactions, and accelerator execution over $27\,\mu \text  {s}$.}}{3}{figure.2}\protected@file@percent }
-\newlabel{fig:waveform}{{2}{3}{QuestaSim 2019.2 Real VCD Simulation Waveform illustrating AS1061 SoC boot sequence, AXI4 bus transactions, and accelerator execution over $27\,\mu \text {s}$}{figure.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Bare-Metal RISC-V Self-Test Execution Logs}{3}{subsection.4.1}\protected@file@percent }
-\newlabel{lst:uart_out}{{1}{3}{UART Console Output from VEGA AS1061 RISC-V Core Executing the GatE-V Accelerator Self-Test}{lstlisting.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}UART Console Output from VEGA AS1061 RISC-V Core Executing the GatE-V Accelerator Self-Test}{3}{lstlisting.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Bare-Metal RISC-V Self-Test Execution}{2}{subsection.4.1}\protected@file@percent }
+\newlabel{lst:uart_out}{{1}{2}{UART Console Output from VEGA AS1061 RISC-V Core Executing GatE-V Accelerator Self-Test}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}UART Console Output from VEGA AS1061 RISC-V Core Executing GatE-V Accelerator Self-Test}{2}{lstlisting.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}CDAC Waveform Signal Hierarchy}{2}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Official QuestaSim behavioral simulation waveform showing end-to-end SoC verification: Processor AXI transactions (top), Accelerator Slave MMIO configuration (middle), and Accelerator Master burst memory access (bottom) with zero deadlocks over full simulation duration.}}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:questa_waveform}{{2}{3}{Official QuestaSim behavioral simulation waveform showing end-to-end SoC verification: Processor AXI transactions (top), Accelerator Slave MMIO configuration (middle), and Accelerator Master burst memory access (bottom) with zero deadlocks over full simulation duration}{figure.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Synthesis \& Resource Breakdown}{3}{section.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Kintex-7 (\texttt  {xc7k325tffg900-2}) Resource Utilization}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:resource_breakdown}{{2}{3}{Kintex-7 (\texttt {xc7k325tffg900-2}) Resource Utilization}{table.2}{}}
+\newlabel{lst:questa_tcl}{{2}{3}{TCL Waveform Setup Command Structure for QuestaSim}{lstlisting.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}TCL Waveform Setup Command Structure for QuestaSim}{3}{lstlisting.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{3}{section.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Kintex-7 (xc7k325tffg900-2) Resource Utilization}}{4}{table.2}\protected@file@percent }
-\newlabel{tab:resource_breakdown}{{2}{4}{Kintex-7 (xc7k325tffg900-2) Resource Utilization}{table.2}{}}
-\gdef \@abspage@last{4}
+\gdef \@abspage@last{3}

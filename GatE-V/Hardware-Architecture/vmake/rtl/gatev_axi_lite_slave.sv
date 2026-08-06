@@ -128,16 +128,7 @@ module gatev_axi_lite_slave (
             dma_start_q <= 1'b0;
             case (w_state)
                 W_IDLE: begin
-                    if (awvalid && wvalid) begin
-                        // Address and data arrive simultaneously
-                        awready <= 1'b1;
-                        wready  <= 1'b1;
-                        bresp   <= AXI_RESP_OKAY;
-                        bvalid  <= 1'b1;
-                        _write_register(awaddr, wdata, wstrb);
-                        w_state <= (bready) ? W_IDLE : W_RESP;
-                    end else if (awvalid) begin
-                        // Address arrives before data
+                    if (awvalid) begin
                         awready <= 1'b1;
                         w_addr_latched <= awaddr;
                         w_state <= W_WRITE;
@@ -150,13 +141,13 @@ module gatev_axi_lite_slave (
                         bresp  <= AXI_RESP_OKAY;
                         bvalid <= 1'b1;
                         _write_register(w_addr_latched, wdata, wstrb);
-                        w_state <= (bready) ? W_IDLE : W_RESP;
+                        w_state <= W_RESP;
                     end
                 end
                 W_RESP: begin
                     awready <= 1'b0;
                     wready  <= 1'b0;
-                    if (bready) begin
+                    if (bready && bvalid) begin
                         bvalid  <= 1'b0;
                         w_state <= W_IDLE;
                     end
@@ -211,8 +202,7 @@ module gatev_axi_lite_slave (
                     r_state <= R_RESP;
                 end
                 R_RESP: begin
-                    rvalid <= 1'b1;
-                    if (rready) begin
+                    if (rready && rvalid) begin
                         rvalid  <= 1'b0;
                         r_state <= R_IDLE;
                     end

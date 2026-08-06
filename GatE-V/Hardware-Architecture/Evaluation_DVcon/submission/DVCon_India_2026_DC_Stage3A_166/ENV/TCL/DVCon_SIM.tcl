@@ -37,7 +37,6 @@ set_property target_language VHDL [current_project]
 
 add_files $MDIR_PATH/DVCon_SoC_SRC/AS1061_SYSTEM/AS1061_SYSTEM_TOP.v $MDIR_PATH/DVCon_SoC_SRC/TOP/Top.vhd
 add_files $MDIR_PATH/DVCon_SoC_SRC/TB/test_bench.vhd
-add_files $MDIR_PATH/DVCon_SoC_SRC/TB/ddr3_model/ddr3_model.sv $MDIR_PATH/DVCon_SoC_SRC/TB/ddr3_model/ddr3_model_parameters.vh
 add_files $MDIR_PATH/DVCon_SoC_SRC/MEMORY_IP/rom_32KB_axi/rom_32KB_axi.xci
 ##------- Add design source files [Accelerator] ---------------
 foreach file [exec find $MDIR_PATH/DVCon_SoC_SRC/ACCELERATOR_IP -type f \( -name "*.v" -o -name "*.sv" -o -name "*.vhd" -o -name "*.xci" \)] {

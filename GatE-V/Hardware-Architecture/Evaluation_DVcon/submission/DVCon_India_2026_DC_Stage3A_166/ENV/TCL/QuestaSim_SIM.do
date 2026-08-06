@@ -59,12 +59,6 @@ eval vlog -work unisims_ver [glob "$unisims_src/*.v"]
 # COMPILE FIXED DESIGN FILES
 # ==========================================================
 
-# DDR3 behavioural model (MIG) =============================================
-# must be compiled BEFORE test_bench.vhd (test_bench instantiates ddr3_model)
-set ddr3_model_dir "../DVCon_SoC_SRC/TB/ddr3_model"
-puts "Compiling DDR3 behavioural model..."
-vlog -work $worklib +incdir+$ddr3_model_dir $ddr3_model_dir/ddr3_model.sv
-
 # VHDL
 vcom -2008 -work $worklib ../DVCon_SoC_SRC/TB/test_bench.vhd
 vcom -2008 -work $worklib ../DVCon_SoC_SRC/TOP/Top.vhd
@@ -106,33 +100,14 @@ if {[llength $verilog_files] > 0} {
     puts "No *.v files found in ACCELERATOR_IP."
 }
 
-# SystemVerilog (*.sv) -- explicit dependency-ordered compile
-# ------------------------------------------------------------------
-# 1. Package first: gatev_pkg must be compiled before any module that
-#    imports it (a glob/lsort compile compiles Accelerator_Top.sv before
-#    gatev_pkg.sv alphabetically, breaking `import gatev_pkg::*`).
-set gatev_pkg_file "$accel_dir/gatev_pkg.sv"
-puts "Compiling ACCELERATOR_IP package (gatev_pkg.sv)..."
-vlog -sv -work $worklib $gatev_pkg_file
-
-# 2. Deliberately ordered list of required accelerator implementation
-#    files, following the module instantiation hierarchy of the full SoC:
-#    leaf modules (MAC engine, AXI slave/master) -> backbone -> gatev_top
-#    -> Accelerator_Top (the wrapper instantiated by TOP/Top.vhd).
-#    tb_gatev.sv (standalone testbench) and gatev_ddr3_model.sv (used only
-#    by tb_gatev) are intentionally excluded: Top.vhd instantiates the
-#    Accelerator_Top wrapper, and the SoC DDR3 is served by the separately
-#    compiled MIG model TB/ddr3_model/ddr3_model.sv.
-set sv_files [list \
-    "$accel_dir/gatev_mac_engine.sv" \
-    "$accel_dir/gatev_axi_lite_slave.sv" \
-    "$accel_dir/gatev_axi4_master.sv" \
-    "$accel_dir/gatev_backbone.sv" \
-    "$accel_dir/gatev_top.sv" \
-    "$accel_dir/Accelerator_Top.sv" \
-]
-puts "Compiling ACCELERATOR_IP SystemVerilog files (dependency-ordered)..."
-vlog -sv -work $worklib {*}$sv_files
+# SystemVerilog (*.sv)
+set sv_files [lsort [glob -nocomplain "$accel_dir/*.sv"]]
+if {[llength $sv_files] > 0} {
+    puts "Compiling ACCELERATOR_IP SystemVerilog files..."
+    vlog -sv -work $worklib {*}$sv_files
+} else {
+    puts "No *.sv files found in ACCELERATOR_IP."
+}
 
 # ==========================================================
 # RUN SIMULATION
@@ -142,46 +117,9 @@ vsim -novopt -suppress 12110 -L unisims_ver -t ps work.test_bench glbl
 # ==========================================================
 # ADD WAVES
 # ==========================================================
-add wave -divider "--- GatE-V System Clock & Reset ---"
-add wave -color cyan /test_bench/u_Top/u_Accelerator_Top/aclk
-add wave -color gray /test_bench/u_Top/u_Accelerator_Top/areset_n
+ add wave -r /*
 
-add wave -divider "--- AXI-Lite Slave Control Interface (0x2004_0000) ---"
-add wave -hex -color red /test_bench/u_Top/u_Accelerator_Top/s_axil_awaddr
-add wave -color red /test_bench/u_Top/u_Accelerator_Top/s_axil_awvalid
-add wave -color red /test_bench/u_Top/u_Accelerator_Top/s_axil_awready
-add wave -hex -color pink /test_bench/u_Top/u_Accelerator_Top/s_axil_wdata
-add wave -color pink /test_bench/u_Top/u_Accelerator_Top/s_axil_wvalid
-add wave -color pink /test_bench/u_Top/u_Accelerator_Top/s_axil_wready
-add wave -color green /test_bench/u_Top/u_Accelerator_Top/s_axil_bresp
-add wave -color green /test_bench/u_Top/u_Accelerator_Top/s_axil_bvalid
-add wave -color green /test_bench/u_Top/u_Accelerator_Top/s_axil_bready
-add wave -hex -color yellow /test_bench/u_Top/u_Accelerator_Top/s_axil_araddr
-add wave -color yellow /test_bench/u_Top/u_Accelerator_Top/s_axil_arvalid
-add wave -color yellow /test_bench/u_Top/u_Accelerator_Top/s_axil_arready
-add wave -hex -color orange /test_bench/u_Top/u_Accelerator_Top/s_axil_rdata
-add wave -color orange /test_bench/u_Top/u_Accelerator_Top/s_axil_rvalid
-
-add wave -divider "--- AXI4 Master Memory Interface (DDR3 Access) ---"
-add wave -hex -color green /test_bench/u_Top/u_Accelerator_Top/m_axi_araddr
-add wave -color green /test_bench/u_Top/u_Accelerator_Top/m_axi_arlen
-add wave -color green /test_bench/u_Top/u_Accelerator_Top/m_axi_arvalid
-add wave -color green /test_bench/u_Top/u_Accelerator_Top/m_axi_arready
-add wave -hex -color green /test_bench/u_Top/u_Accelerator_Top/m_axi_rdata
-add wave -color magenta /test_bench/u_Top/u_Accelerator_Top/m_axi_rlast
-add wave -color green /test_bench/u_Top/u_Accelerator_Top/m_axi_rvalid
-add wave -hex /test_bench/u_Top/u_Accelerator_Top/m_axi_awaddr
-add wave /test_bench/u_Top/u_Accelerator_Top/m_axi_awvalid
-add wave -hex /test_bench/u_Top/u_Accelerator_Top/m_axi_wdata
-add wave /test_bench/u_Top/u_Accelerator_Top/m_axi_wvalid
-
-add wave -divider "--- GatE-V Accelerator Execution Status ---"
-add wave -color green /test_bench/u_Top/u_Accelerator_Top/acc_start
-add wave -color green /test_bench/u_Top/u_Accelerator_Top/acc_done
-add wave -hex /test_bench/u_Top/u_Accelerator_Top/task_id
-
-add wave -divider "--- All System Signals (Recursive) ---"
-add wave -r /test_bench/u_Top/u_Accelerator_Top/*
-
-# Zoom wave window to active execution pass
-wave zoomfull
+# ==========================================================
+# RUN TIME CONTROL
+# ==========================================================
+# run 12 ms

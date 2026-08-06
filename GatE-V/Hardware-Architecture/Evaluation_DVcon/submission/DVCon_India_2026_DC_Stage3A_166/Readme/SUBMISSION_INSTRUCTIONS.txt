@@ -7,36 +7,187 @@ Project: GatE-V — Task-Aware Object Detector Accelerator on VEGA RISC-V SoC
 DIRECTORY STRUCTURE IN GOOGLE DRIVE:
 --------------------------------------------------------------------------------
 1. Document/
-   - DVCon_India_2026_DC_Stage3A_Report_166.pdf
-   - figures/ (Performance plots, waveforms, architecture diagrams)
-   - simulation_logs_summary.txt (Summary of QuestaSim & Vivado synthesis results)
+   - DVCon_India_2026_DC_Stage3A_Report_166.pdf (Comprehensive IEEE Stage 3A Report)
+   - figures/
+     - gatev_architecture_diagram.jpg (GatE-V System & Systolic Array Architecture)
+     - questa_real_simulation_waveform.png (Official QuestaSim Verification Waveform)
 
 2. Readme/
    - SUBMISSION_INSTRUCTIONS.txt (This file)
    - README.md (Detailed system & architectural specifications)
 
 3. Env/
-   - DVCon_2026/ (Complete executable environment containing SoC RTL, GatE-V IP, Bare-metal Firmware, RUN scripts, and Headless simulation harness)
+   - DVCon_2026/ (Complete executable environment containing SoC RTL, GatE-V IP, Bare-metal Firmware, and RUN scripts)
 
 --------------------------------------------------------------------------------
 QUICK EXECUTION GUIDE (REPLICATING EVALUATION STEPS):
 --------------------------------------------------------------------------------
 
-1. Headless QuestaSim Simulation:
-   $ cd Env/DVCon_2026/Questa_headless_sim
-   $ vsim -c -do run_questa_headless.do
-   $ python3 parse_vcd.py
+1. Interactive Menu & Simulation Setup:
+   $ cd Env/DVCon_2026/RUN
+   $ ./run.sh
+   (Select Option 1 -> Option 2 for QuestaSim Simulation)
 
-2. Vivado Synthesis (Kintex-7 xc7k325tffg900-2):
+2. Official QuestaSim Waveform Verification:
+   To view the exact 3-section waveform hierarchy specified in the CDAC evaluation guide,
+   copy and paste the following script block directly into the QuestaSim Transcript window:
+
+```tcl
+# 0. Clear existing signals
+delete wave *
+
+# 1. Top Level Signals
+add wave -group "Top Level" /test_bench/u_Top/clk_in1_p
+add wave -group "Top Level" /test_bench/u_Top/rst
+add wave -group "Top Level" /test_bench/u_Top/reset_n
+add wave -group "Top Level" /test_bench/u_Top/sin0
+add wave -group "Top Level" /test_bench/u_Top/sout0
+
+# SECTION 1: Processor Side Signals (CDAC PDF Page 8)
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arid
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_araddr
+add wave -group "Processor Side Signals" -radix dec /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arlen
+add wave -group "Processor Side Signals" -radix dec /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arsize
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arvalid
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_arready
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rid
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rdata
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rresp
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rlast
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rvalid
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_rready
+
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awvalid
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awaddr
+add wave -group "Processor Side Signals" -radix dec /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awlen
+add wave -group "Processor Side Signals" -radix dec /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awsize
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_awready
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wdata
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wstrb
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wlast
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wvalid
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_wready
+
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_bid
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_bresp
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_bvalid
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m0_axi_bready
+
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arid
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_araddr
+add wave -group "Processor Side Signals" -radix dec /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arlen
+add wave -group "Processor Side Signals" -radix dec /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arsize
+add wave -group "Processor Side Signals" -radix dec /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arburst
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arvalid
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_arready
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rid
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rdata
+add wave -group "Processor Side Signals" -radix hex /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rresp
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rlast
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rvalid
+add wave -group "Processor Side Signals" /test_bench/u_Top/u_AS1061_SYSTEM_TOP/u_soc_top_64/u_Processor_top/proc_m1_axi_rready
+
+# SECTION 2: Accelerator Slave Side Signals (CDAC PDF Page 9)
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_awid
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_awaddr
+add wave -group "Accelerator Slave Side Signals" -radix dec /test_bench/u_Top/acc_s_axi_awlen
+add wave -group "Accelerator Slave Side Signals" -radix dec /test_bench/u_Top/acc_s_axi_awsize
+add wave -group "Accelerator Slave Side Signals" -radix dec /test_bench/u_Top/acc_s_axi_awburst
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_awvalid
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_awready
+
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_wdata
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_wstrb
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_wvalid
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_wready
+
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_bid
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_bresp
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_bvalid
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_bready
+
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_arid
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_araddr
+add wave -group "Accelerator Slave Side Signals" -radix dec /test_bench/u_Top/acc_s_axi_arlen
+add wave -group "Accelerator Slave Side Signals" -radix dec /test_bench/u_Top/acc_s_axi_arsize
+add wave -group "Accelerator Slave Side Signals" -radix dec /test_bench/u_Top/acc_s_axi_arburst
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_arvalid
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_arready
+
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_rid
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_rdata
+add wave -group "Accelerator Slave Side Signals" -radix hex /test_bench/u_Top/acc_s_axi_rresp
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_rlast
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_rvalid
+add wave -group "Accelerator Slave Side Signals" /test_bench/u_Top/acc_s_axi_rready
+
+# SECTION 3: Accelerator Master Side Signals (CDAC PDF Page 10)
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_awid
+add wave -group "Accelerator Master Side Signals" -radix dec /test_bench/u_Top/acc_m_axi_awlen
+add wave -group "Accelerator Master Side Signals" -radix dec /test_bench/u_Top/acc_m_axi_awsize
+add wave -group "Accelerator Master Side Signals" -radix dec /test_bench/u_Top/acc_m_axi_awburst
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_awaddr
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_awvalid
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_awready
+
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_wvalid
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_wlast
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_wdata
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_wstrb
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_wready
+
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_bready
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_bvalid
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_bid
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_bresp
+
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_arvalid
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_arid
+add wave -group "Accelerator Master Side Signals" -radix dec /test_bench/u_Top/acc_m_axi_arlen
+add wave -group "Accelerator Master Side Signals" -radix dec /test_bench/u_Top/acc_m_axi_arsize
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_araddr
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_arready
+
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_rready
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_rvalid
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_rid
+add wave -group "Accelerator Master Side Signals" /test_bench/u_Top/acc_m_axi_rlast
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_rresp
+add wave -group "Accelerator Master Side Signals" -radix hex /test_bench/u_Top/acc_m_axi_rdata
+
+run 15 ms
+wave zoom full
+```
+
+3. Vivado Synthesis (Kintex-7 xc7k325tffg900-2):
+   Via Batch Command:
    $ cd Env/DVCon_2026/RUN
    $ vivado -mode batch -source ../TCL/DVCon_SYN.tcl
 
-3. Interactive Menu Workflow:
+   Via Interactive Menu:
    $ cd Env/DVCon_2026/RUN
    $ ./run.sh
-   (Select 1 for Simulation, 2 for Synthesis)
+   (Select Option 2 -> Option 1 for Synthesis Only, or Option 2 -> Option 2 for Full Implementation)
+
+   Synthesis Results Summary (Kintex-7 xc7k325tffg900-2 Target):
+   - Target Board / Device: Xilinx Kintex-7 (xc7k325tffg900-2)
+   - Slice LUTs: 87,698 / 203,800 (43.03%) [CDAC Ceiling: <= 45.0%]
+   - Slice Registers: 52,802 / 407,600 (12.95%)
+   - Block RAM Tiles: 77 / 445 (17.30%) [32 RAMB36 + 90 RAMB18]
+   - DSP48E1 Slices (SoC Total): 596 / 840 (70.95%) [CDAC Ceiling: <= 90.0%]
+
+4. Rebuilding Firmware & Boot ROM MIF:
+   Via Native Toolchain (bundled `toolchain-bare` + `Util`):
+   $ cd Env/DVCon_2026/Application/gatev_firmware
+   $ ./build.sh
+
+   Via Docker Container (bundled `.docker_scripts/docker.tar`):
+   $ cd Env/DVCon_2026/Application/.docker_scripts
+   $ ./install_and_load_docker.sh
+   $ ./sim_app_compile_and_mif.sh
 
 --------------------------------------------------------------------------------
 CONTACT & TEAM:
 Team 166 (Byte Silicon)
 ================================================================================
+
